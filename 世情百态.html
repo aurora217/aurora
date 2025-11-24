@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大明风华 - 明朝世情百态录</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SimSun', serif;
+            background-color: #f8f3e6;
+            color: #4a3b28;
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23b89f7a' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            position: relative;
+        }
+        
+        .header-content {
+            background: rgba(218, 193, 161, 0.2);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            color: #8b1a1a;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            letter-spacing: 5px;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #6d4c41;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            gap: 10px;
+        }
+        
+        .nav-item {
+            background: #8b1a1a;
+            color: #f8f3e6;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover {
+            background: #6d0019;
+            transform: translateY(-3px);
+        }
+        
+        .scroll-container {
+            background: #e8d9c5;
+            border: 2px solid #b89f7a;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .scroll-container::before, .scroll-container::after {
+            content: '';
+            position: absolute;
+            height: 40px;
+            left: 0;
+            right: 0;
+            background: #b89f7a;
+            border-radius: 5px;
+        }
+        
+        .scroll-container::before {
+            top: -10px;
+        }
+        
+        .scroll-container::after {
+            bottom: -10px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #8b1a1a;
+            margin: 30px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #b89f7a;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .content-card {
+            background: #f9f5eb;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-header {
+            background: #8b1a1a;
+            color: #f9f5eb;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: #e8d9c5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8b1a1a;
+            font-style: italic;
+        }
+        
+        .quote {
+            font-style: italic;
+            padding: 20px;
+            background: #e8d9c5;
+            border-left: 5px solid #8b1a1a;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 2px solid #b89f7a;
+            color: #6d4c41;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">明</div>
+                <h1>大明会典</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="明朝.html"><i class="fas fa-home"></i> 首页</a></li>
+                    <li><a href="王朝兴衰.html"><i class="fas fa-crown"></i> 王朝兴衰</a></li>
+                    <li><a href="文华典章.html"><i class="fas fa-paint-brush"></i> 文华典章</a></li>
+                    <li><a href="世情百态.html"><i class="fas fa-users"></i> 世情百态</a></li>
+                    <li><a href="互动探索.html"><i class="fas fa-gamepad"></i> 互动探索</a></li>
+					<li><a href="明朝文创.html">明朝文创</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>大明风华</h1>
+                <div class="subtitle">明朝社会世情百态录</div>
+               
+            </div>
+        </header>
+
+        <div class="scroll-container">
+            <p>明朝（1368年-1644年），是中国历史上一个强盛的王朝，其社会风貌多元丰富，市井文化繁荣发展。从江南水乡的婉约到北方京城的豪迈，从文人雅士的诗酒唱和到市井小民的日常琐碎，明朝社会呈现出一幅生动多彩的画卷。</p>
+            <p>本网页将带您穿越时空，领略明朝社会的百态风情，感受那个时代独特的生活气息与文化韵味。</p>
+        </div>
+
+        <h2 class="section-title">市井生活百态</h2>
+
+        <div class="content-grid">
+            <div class="content-card">
+                <div class="card-header">街市商贸</div>
+                <div class="card-body">
+                    
+                    <p>明朝城市商业繁荣，街市上店铺林立，叫卖声不绝于耳。南京、北京、苏州、杭州等大城市形成了专门的商业区，如南京的夫子庙、北京的灯市口等。</p>
+                    <p>市集上商品琳琅满目，从日常生活所需的粮食、布匹，到奢侈品如珠宝、古董，应有尽有。商人阶层地位提高，出现了许多著名的商帮，如晋商、徽商等。</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-header">市井娱乐</div>
+                <div class="card-body">
+                    
+                    <p>明朝市民文化生活丰富，戏曲、说书、杂技等表演形式深受欢迎。昆曲在明朝中期逐渐形成并流行，成为士大夫和市民的共同爱好。</p>
+                    <p>茶馆、酒肆不仅是饮食场所，也是信息交流和文化娱乐的中心。赌博等陋习也在市井中流行，虽经朝廷禁止，却难以根除。</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-header">市井人物</div>
+                <div class="card-body">
+                    
+                    <p>明朝市井社会阶层复杂，包括手工业者、小商贩、脚夫、艺人、妓女、乞丐等三教九流。这些市井人物构成了城市生活的基础。</p>
+                    <p>话本小说和戏曲中塑造了许多鲜活的市井人物形象，如《金瓶梅》中的西门庆、潘金莲，《三言二拍》中的各种市井小民，反映了明朝市井生活的真实面貌。</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">文人雅士风尚</h2>
+
+        <div class="content-grid">
+            <div class="content-card">
+                <div class="card-header">雅集唱和</div>
+                <div class="card-body">
+                   
+                    <p>明朝文人雅士常举办雅集，饮酒赋诗，赏玩书画，品鉴古董。苏州、杭州等地的园林成为文人聚会的理想场所。</p>
+                    <p>文人之间通过诗词唱和、书信往来交流思想情感，形成了独特的文人文化圈。许多文学流派如"前后七子"、"公安派"等都在这种交流中形成。</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-header">书房清趣</div>
+                <div class="card-body">
+                   
+                    <p>文人士大夫注重书房的布置与陈设，追求"雅致"的审美趣味。文房四宝——笔、墨、纸、砚，不仅实用，更是艺术品。</p>
+                    <p>明朝盛行收藏之风，文人雅士热衷于收集古籍、书画、瓷器、青铜器等古董，鉴赏古董成为士大夫阶层的重要文化活动。</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-header">山水之乐</div>
+                <div class="card-body">
+                    
+                    <p>明朝文人崇尚自然，喜好游历名山大川，将山水之乐视为人生一大享受。旅行中创作诗词、绘画，记录所见所感。</p>
+                    <p>山水画在明朝达到新的高度，沈周、文徵明、唐寅、仇英等"明四家"的作品，体现了文人寄情山水的理想与情怀。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote">
+            "人生得意须尽欢，莫使金樽空对月。天生我材必有用，千金散尽还复来。"——虽为唐诗，却道明明朝文人的洒脱人生态度
+        </div>
+
+        <h2 class="section-title">衣食住行见闻</h2>
+
+        <div class="content-grid">
+            <div class="content-card">
+                <div class="card-header">服饰风尚</div>
+                <div class="card-body">
+                    
+                    <p>明朝恢复汉族衣冠制度，服饰具有明显的等级特征。士人戴方巾，穿直身；官员着补服，戴乌纱帽；平民则多穿短衣，戴小帽。</p>
+                    <p>中后期随着商品经济发展，服饰的僭越现象增多，富商大贾穿着华丽，甚至模仿官员服饰，反映了社会风气的变化。</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-header">饮食文化</div>
+                <div class="card-body">
+                    
+                    <p>明朝饮食文化丰富多彩，南北菜系逐渐形成。北方以面食为主，南方以米饭为主。烹饪技术提高，出现了许多美食专著。</p>
+                    <p>茶馆、酒肆遍布城市，成为社交场所。茶叶的品种和饮茶方式更加多样化，泡茶法逐渐取代点茶法成为主流。</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-header">出行方式</div>
+                <div class="card-body">
+                    
+                    <p>明朝交通较前代更为发达，驿站制度完善，陆路、水路交通网络四通八达。士人出行多乘轿子或马车，平民则多步行或乘船。</p>
+                    <p>南方水乡以舟船为主要交通工具，有"无船不出门"之说。大运河是连接南北的重要交通动脉，漕运繁忙，沿岸城市因此繁荣。</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>大明风华 · 世情百态 | 探索明代社会生活的多彩面貌</p>
+            <p>本网页内容仅供参考学习，部分内容为历史艺术化呈现</p>
+        </footer>
+    </div>
+
+    <script>
+        // 简单的滚动效果
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const sectionTitle = this.textContent;
+                const targetSection = document.querySelector(`.section-title:contains("${sectionTitle}")`);
+                
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 添加contains方法的兼容实现
+        if (!String.prototype.contains) {
+            String.prototype.contains = function() {
+                return String.prototype.indexOf.apply(this, arguments) !== -1;
+            };
+        }
+    </script>
+</body>
+</html>

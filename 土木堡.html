@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>土木堡之变 - 明朝历史转折点</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SimSun', '宋体', serif;
+        }
+        
+        body {
+            background-color: #f5ecd9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23c9ab78' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #c9ab78;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #c9ab78;
+        }
+        
+        h1 {
+            color: #8b0000;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-family: 'SimHei', '黑体', sans-serif;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+        
+        .time-period {
+            margin: 15px 0;
+            font-weight: bold;
+            color: #8b4513;
+        }
+        
+        .content-section {
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #8b0000;
+            border-left: 5px solid #8b0000;
+            padding-left: 10px;
+            margin: 20px 0 15px;
+            font-family: 'SimHei', '黑体', sans-serif;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-indent: 2em;
+            text-align: justify;
+        }
+        
+        .highlight {
+            background-color: #fff4e6;
+            padding: 15px;
+            border-left: 3px solid #e67700;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .battle-map {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            background: #f9f5f0;
+            border-radius: 5px;
+            border: 1px dashed #c9ab78;
+        }
+        
+        .battle-map div {
+            height: 200px;
+            background: #e8dfca;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+            border-radius: 3px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .key-figures {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        
+        .figure-card {
+            width: 48%;
+            background: #f9f5f0;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border-bottom: 3px solid #c9ab78;
+        }
+        
+        .figure-name {
+            font-weight: bold;
+            color: #8b0000;
+            margin-bottom: 5px;
+        }
+        
+        .consequences {
+            background: #f8f0e5;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 25px 0;
+            border: 1px solid #d9bf9a;
+        }
+        
+        .consequences h3 {
+            color: #8b0000;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #c9ab78;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .figure-card {
+                width: 100%;
+            }
+            
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>土木堡之变</h1>
+            <p class="subtitle">明朝由盛转衰的重大历史转折点</p>
+            <p class="time-period">公元1449年（明正统十四年）</p>
+        </header>
+		 <nav>
+                <div class="container nav-container">
+                   <ul class="nav-list">
+                     <li><a href="明朝.html">首页</a></li>
+                    </ul>
+                </div>
+         </nav>
+        
+        <section class="content-section">
+            <h2>事件背景</h2>
+            <p>土木堡之变是明朝历史上一次重大的军事和政治危机。明英宗正统年间，北方蒙古瓦剌部逐渐强大，其首领也先统一蒙古各部后，不断侵扰明朝边境。</p>
+            <p>当时明朝军政腐败，太监王振专权，边防废弛。1449年，也先分兵四路南下进攻明朝，主力直逼大同。明英宗在王振的怂恿下，不顾群臣反对，毅然率军亲征。</p>
+            
+            <div class="highlight">
+                <p>明英宗率领号称50万大军从北京出发，但由于准备仓促，军纪涣散，指挥失当，加上连天大雨，明军士气低落，未战先疲。</p>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <h2>战役经过</h2>
+            <p>明军出居庸关，经宣府赴大同。到达大同时，前线明军已经战败，王振惊慌失措，决定撤军。在撤退过程中，王振想让皇帝"临幸"他的家乡蔚州，但又担心大军损坏他的田园庄稼，于是屡次改变行军路线。</p>
+            
+            <div class="battle-map">
+                <h3>土木堡战役示意图</h3>
+         <div class="timeline-img" style="background-image: url('OIP-C (2).webp');"></div>
+                <p>明军迂回周旋，延误时机，最终在土木堡（今河北怀来东）被瓦剌军追上并包围。</p>
+            </div>
+            
+            <p>1449年8月31日，明军在土木堡被瓦剌军包围。瓦剌军切断明军水源，明军人马饥渴难耐。也先假意议和，趁明军移动阵型时发动总攻。明军指挥混乱，阵型大乱，全军覆没。</p>
+            
+            <div class="highlight">
+                <p>此战中，明英宗被俘，随行文武大臣五十余人战死，军队损失二十余万，武器装备损失无数，是明成祖北伐以来明朝最惨重的军事失败。</p>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <h2>关键人物</h2>
+            <div class="key-figures">
+                <div class="figure-card">
+                    <p class="figure-name">明英宗朱祁镇</p>
+                    <p>明朝第六位皇帝，在太监王振怂恿下亲征，在土木堡被俘，一年后被释返京，1457年通过"夺门之变"重登帝位。</p>
+                </div>
+                
+                <div class="figure-card">
+                    <p class="figure-name">也先</p>
+                    <p>瓦剌首领，统一蒙古各部，在土木堡大败明军，俘虏明英宗，随后进攻北京，被于谦击败。</p>
+                </div>
+                
+                <div class="figure-card">
+                    <p class="figure-name">王振</p>
+                    <p>明朝宦官，深受英宗宠信，专权跋扈，怂恿英宗亲征，指挥失误导致明军惨败，在乱军中被杀。</p>
+                </div>
+                
+                <div class="figure-card">
+                    <p class="figure-name">于谦</p>
+                    <p>兵部侍郎，在英宗被俘后力主抗战，拥立明代宗，组织北京保卫战，成功击退瓦剌军队。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <h2>事件影响与后果</h2>
+            <div class="consequences">
+                <h3>土木堡之变的历史影响</h3>
+                <p>1. 明朝军事力量严重削弱，精锐部队损失殆尽，从此转为战略防御态势。</p>
+                <p>2. 明朝政治格局发生变化，宦官势力暂时受挫，文官集团地位上升。</p>
+                <p>3. 明朝北方边防压力增大，开始大规模修筑长城，加强边防建设。</p>
+                <p>4. 明朝与蒙古关系进入新阶段，双方由军事对抗逐渐转为封贡互市关系。</p>
+                <p>5. 明朝国力大损，财政困难加剧，为明朝中后期的统治危机埋下伏笔。</p>
+            </div>
+            
+            <p>土木堡之变后，在于谦等大臣的主持下，明朝立英宗之弟朱祁钰为帝（明代宗），稳定局势，取得了北京保卫战的胜利，避免了重蹈北宋覆辙的命运。</p>
+        </section>
+        
+        <footer>
+            <p>© 2023 历史知识网 | 本页面内容仅供参考学习</p>
+            <p>土木堡之变是明朝中期的重要历史事件，标志着明朝由盛转衰的开始。</p>
+        </footer>
+    </div>
+</body>
+</html>

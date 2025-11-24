@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>明韵文创 - 品味明朝风华，传承中华雅韵</title>
+    <style>
+        /* 基础样式 */
+        :root {
+            --primary-color: #c62f2f; /* 朱红色 */
+            --secondary-color: #d4af37; /* 金色 */
+            --dark-color: #2a2a2a; /* 墨黑色 */
+            --light-color: #f5f5f5;
+            --text-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Noto Serif SC", "SimSun", serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            margin-left: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+        
+        /* 页面内容 */
+        .page-content {
+            display: none;
+        }
+        
+        .page-content.active {
+            display: block;
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1547981609-4b6bf67b7d12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #a02626;
+        }
+        
+        /* 页面标题 */
+        .page-title {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .page-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 10px auto;
+        }
+        
+        /* 产品分类导航 */
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .category-btn {
+            padding: 0.7rem 1.5rem;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        /* 产品展示 */
+        .products {
+            padding: 2rem 0;
+            background-color: #f9f9f9;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            z-index: 1;
+        }
+        
+        .product-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-price {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            height: 60px;
+            overflow: hidden;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .add-to-cart {
+            padding: 0.7rem 1.2rem;
+            background-color: var(--dark-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #444;
+        }
+        
+        .view-details {
+            padding: 0.7rem 1.2rem;
+            background-color: transparent;
+            color: var(--dark-color);
+            border: 1px solid var(--dark-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .view-details:hover {
+            background-color: var(--dark-color);
+            color: white;
+        }
+        
+        /* 购物车区域 */
+        .cart-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .cart-items {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .cart-summary {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        
+        .cart-item {
+            display: flex;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+        
+        .cart-item-img {
+            width: 120px;
+            height: 120px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            margin-right: 1.5rem;
+        }
+        
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        
+        .cart-item-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cart-item-price {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: var(--dark-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            margin: 0 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .remove-btn {
+            background-color: transparent;
+            color: #999;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        
+        .remove-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            border-bottom: none;
+            margin-top: 1rem;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1.5rem;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #a02626;
+        }
+        
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--dark-color);
+            text-decoration: none;
+        }
+        
+        /* 收货信息表单 */
+        .shipping-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .form-col {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        /* 支付方式 */
+        .payment-methods {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        
+        .payment-option:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .payment-option.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(198, 47, 47, 0.05);
+        }
+        
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+        
+        /* 订单确认 */
+        .order-confirmation {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .order-number {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+            font-family: monospace;
+            font-size: 1.2rem;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary-color);
+            margin-top: 5px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .add-to-cart {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+            }
+            
+            .cart-item-img {
+                width: 100%;
+                height: 200px;
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .form-col {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo" data-page="home">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="5" y="5" width="30" height="30" rx="5" stroke="#d4af37" stroke-width="2"/>
+                        <path d="M10 10H30V30H10V10Z" fill="#c62f2f"/>
+                        <circle cx="20" cy="20" r="8" fill="#d4af37"/>
+                    </svg>
+                    <span>明韵文创</span>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="明朝.html"><i class="fas fa-home"></i> 首页</a></li>
+						 <li><a href="#" data-page="home">文创</a></li>
+                        <li><a href="#" data-page="products">产品</a></li>
+                        <li><a href="#" data-page="cart">购物车</a></li>
+                        <li><a href="#" data-page="about">关于我们</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" data-page="cart">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.4 5.2 16.4H17M17 13V16.4M9 19C9 19.6 8.6 20 8 20C7.4 20 7 19.6 7 19C7 18.4 7.4 18 8 18C8.6 18 9 18.4 9 19ZM17 19C17 19.6 16.6 20 16 20C15.4 20 15 19.6 15 19C15 18.4 15.4 18 16 18C16.6 18 17 18.4 17 19Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="cart-count">0</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首页内容 -->
+    <div id="home" class="page-content active">
+        <!-- 英雄区域 -->
+        <section class="hero">
+            <div class="container">
+                <h1>品味明朝风华，传承中华雅韵</h1>
+                <p>明韵文创致力于将明朝文化精髓融入现代生活，为您带来独具匠心的文创产品</p>
+                <a href="#" class="btn" data-page="products">探索产品</a>
+            </div>
+        </section>
+
+        <!-- 产品展示 -->
+        <section class="products">
+            <div class="container">
+                <h2 class="page-title">精选产品</h2>
+                <div class="product-grid" id="featured-products">
+                    <!-- 精选产品将通过JavaScript动态加载 -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 产品页面 -->
+    <div id="products" class="page-content">
+        <div class="container">
+            <h1 class="page-title">所有产品</h1>
+            
+            <!-- 产品分类导航 -->
+            <div class="category-nav" id="category-nav">
+                <!-- 分类按钮将通过JavaScript动态加载 -->
+            </div>
+            
+            <div class="product-grid" id="all-products">
+                <!-- 所有产品将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 购物车页面 -->
+    <div id="cart" class="page-content">
+        <div class="container">
+            <h1 class="page-title">购物车</h1>
+            
+            <div class="cart-section">
+                <div class="cart-items" id="cart-items">
+                    <!-- 购物车商品将通过JavaScript动态加载 -->
+                    <div class="empty-cart-message" style="text-align: center; padding: 3rem; display: none;">
+                        <h3>您的购物车是空的</h3>
+                        <p>快去挑选一些心仪的商品吧！</p>
+                        <a href="#" class="btn" data-page="products" style="margin-top: 1rem;">去购物</a>
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <h2>订单摘要</h2>
+                    <div class="summary-row">
+                        <span>商品小计</span>
+                        <span id="subtotal">¥ 0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>运费</span>
+                        <span id="shipping">¥ 0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>优惠</span>
+                        <span id="discount">- ¥ 0</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>总计</span>
+                        <span id="total">¥ 0</span>
+                    </div>
+                    <button class="checkout-btn" id="proceedToCheckout">前往结算</button>
+                    <a href="#" class="continue-shopping" data-page="products">继续购物</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 结算页面 -->
+    <div id="checkout" class="page-content">
+        <div class="container">
+            <h1 class="page-title">结算</h1>
+            
+            <!-- 收货信息表单 -->
+            <div class="shipping-form">
+                <h2>收货信息</h2>
+                <form id="shippingInfoForm">
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="name">收货人姓名</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="phone">联系电话</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">详细地址</label>
+                        <input type="text" id="address" name="address" placeholder="省市区街道门牌号" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="province">省份</label>
+                                <select id="province" name="province" required>
+                                    <option value="">请选择省份</option>
+                                    <option value="beijing">北京市</option>
+                                    <option value="shanghai">上海市</option>
+                                    <option value="guangdong">广东省</option>
+                                    <option value="jiangsu">江苏省</option>
+                                    <option value="zhejiang">浙江省</option>
+									<option value="hebei">河北省</option>
+									<option value="henan">河南省</option>
+									<option value="shandong">山东省</option>
+									<option value="shanxi">山西省</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="city">城市</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="postalCode">邮政编码</label>
+                                <input type="text" id="postalCode" name="postalCode" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notes">备注 (可选)</label>
+                        <textarea id="notes" name="notes" rows="3" placeholder="如有特殊要求，请在此备注"></textarea>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- 支付方式 -->
+            <div class="payment-methods">
+                <h2>选择支付方式</h2>
+                
+                <div class="payment-option selected" data-method="alipay">
+                    <div class="payment-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="4" width="20" height="16" rx="2" fill="#1677FF"/>
+                            <path d="M7 12H17V14H7V12Z" fill="white"/>
+                            <path d="M9 16H15V18H9V16Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3>支付宝</h3>
+                        <p>推荐使用，安全快捷</p>
+                    </div>
+                </div>
+                
+                <div class="payment-option" data-method="wechat">
+                    <div class="payment-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.69134 4.00024C5.30834 4.00024 2.69134 6.61724 2.69134 10.0002C2.69134 11.6842 3.34734 13.2182 4.44134 14.3792L3.53934 17.5862L7.00034 16.7262C7.91234 17.2282 8.96834 17.5002 10.0773 17.5002C13.4603 17.5002 16.0773 14.8832 16.0773 11.5002C16.0773 8.11724 13.4603 4.00024 8.69134 4.00024Z" fill="#07C160"/>
+                            <path d="M12.0766 6.00024C14.8116 6.00024 17.0766 8.26524 17.0766 11.0002C17.0766 13.7352 14.8116 16.0002 12.0766 16.0002C11.2276 16.0002 10.4226 15.8002 9.71157 15.4442L7.50057 16.0002L8.07657 13.8282C7.70657 13.0952 7.50057 12.2712 7.50057 11.4042C7.50057 8.66924 9.76557 6.00024 12.0766 6.00024Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3>微信支付</h3>
+                        <p>便捷支付，广泛使用</p>
+                    </div>
+                </div>
+                
+                <div class="payment-option" data-method="card">
+                    <div class="payment-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="5" width="20" height="14" rx="2" fill="#1E1E1E"/>
+                            <rect x="4" y="9" width="16" height="2" fill="white"/>
+                            <rect x="4" y="13" width="8" height="2" fill="white"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3>银行卡支付</h3>
+                        <p>支持信用卡和储蓄卡</p>
+                    </div>
+                </div>
+                
+                <div class="order-summary">
+                    <h3>订单详情</h3>
+                    <div id="checkout-items">
+                        <!-- 结算商品将通过JavaScript动态加载 -->
+                    </div>
+                    <div class="summary-row">
+                        <span>商品小计</span>
+                        <span id="checkout-subtotal">¥ 0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>运费</span>
+                        <span id="checkout-shipping">¥ 0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>优惠</span>
+                        <span id="checkout-discount">- ¥ 0</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>总计</span>
+                        <span id="checkout-total">¥ 0</span>
+                    </div>
+                </div>
+                
+                <button class="checkout-btn" id="completePayment">立即支付</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 订单确认页面 -->
+    <div id="confirmation" class="page-content">
+        <div class="container">
+            <div class="order-confirmation">
+                <div class="success-icon">✓</div>
+                <h2>订单支付成功！</h2>
+                <p>感谢您的购买，我们已收到您的订单</p>
+                <div class="order-number" id="order-number">订单号: MY20230528001</div>
+                <p>我们将在3-5个工作日内为您发货</p>
+                <p>您可以通过订单号查询物流信息</p>
+                <button class="checkout-btn" data-page="home">返回首页</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 关于我们页面 -->
+    <div id="about" class="page-content">
+        <div class="container">
+            <h1 class="page-title">关于我们</h1>
+            <div class="shipping-form">
+                <h2>明韵文创</h2>
+                <p>明韵文创致力于传承和发扬明朝文化，将传统美学融入现代生活，打造独具特色的文创产品。</p>
+                <p>我们精选优质材料，结合传统工艺与现代设计，为您带来兼具艺术价值与实用性的文创产品。</p>
+                <p>无论是文房四宝、瓷器艺术、服饰配饰还是家居装饰，每一件产品都蕴含着深厚的文化底蕴和精湛的工艺。</p>
+                
+               
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>关于我们</h3>
+                    <p>明韵文创致力于传承和发扬明朝文化，将传统美学融入现代生活，打造独具特色的文创产品。</p>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#" data-page="home">文创</a></li>
+                        <li><a href="#" data-page="products">产品</a></li>
+                        <li><a href="#" data-page="cart">购物车</a></li>
+                        <li><a href="#" data-page="about">关于我们</a></li>
+                    </ul>
+                </div>
+               
+               
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 明韵文创 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 产品数据 - 扩展版
+        const products = [
+            // 瓷器类
+            {
+                id: 1,
+                name: "青花瓷茶具套装",
+                price: 368,
+                image:"https://ts1.tc.mm.bing.net/th/id/R-C.3377735f4031f4a51fda1572ce798929?rik=%2fU7gYKsYub0ygA&riu=http%3a%2f%2fyun.lehome114.com%2fattached%2fcylzs%2fimage%2f20201207%2f20201207134754_62108.jpg&ehk=jvSAHIeayp6olHH3zaSsjsCqmo6NWwqQNq2ER5c2oys%3d&risl=&pid=ImgRaw&r=0",
+                description: "采用传统青花工艺，手工绘制山水图案，适合茶道爱好者收藏使用。",
+                badge: "热销",
+                category: "瓷器",
+                featured: true
+            },
+            {
+                id: 2,
+                name: "明代风格香炉",
+                price: 198,
+                image: "https://5b0988e595225.cdn.sohucs.com/c_zoom,h_231/images/20190704/5dbc8539a5394bac8fa0a1f699901c9a.jpeg",
+                description: "铜制香炉，仿明代宣德炉造型，适合焚香冥想，营造雅致氛围。",
+                badge: "",
+                category: "瓷器",
+                featured: false
+            },
+            {
+                id: 3,
+                name: "青花瓷花瓶",
+                price: 288,
+                image: "https://picx.zhimg.com/v2-2967a60bbda4333832f887a310305f63_1440w.jpg",
+                description: "传统青花瓷花瓶，手工绘制花鸟图案，适合家居装饰。",
+                badge: "新品",
+                category: "瓷器",
+                featured: false
+            },
+            {
+                id: 4,
+                name: "景德镇瓷碗套装",
+                price: 158,
+                image: "https://img.redocn.com/sheying/20161009/mingdaijingdezhenqinghuaciwan_7199143.jpg",
+                description: "景德镇传统工艺瓷碗，釉色温润，适合日常使用或收藏。",
+                badge: "",
+                category: "瓷器",
+                featured: false
+            },
+            
+            // 服饰类
+            {
+                id: 5,
+                name: "明制汉服女装",
+                price: 598,
+                image: "https://img.alicdn.com/i4/4283620725/O1CN0119DlV91HE5jf6iSt9_!!4283620725.jpg",
+                description: "仿照明朝服饰风格设计，采用优质丝绸面料，重现古典优雅之美。",
+                badge: "新品",
+                category: "服饰",
+                featured: true
+            },
+            {
+                id: 6,
+                name: "明代纹样丝巾",
+                price: 168,
+                image: "https://ts2.tc.mm.bing.net/th/id/OIP-C.O1iLI6r7r__1-fmkYk2-GgHaFj?rs=1&pid=ImgDetMain&o=7&rm=3",
+                description: "采用传统明代纹样设计的真丝丝巾，兼具古典美与现代时尚感。",
+                badge: "热销",
+                category: "服饰",
+                featured: false
+            },
+            {
+                id: 7,
+                name: "明代官服钥匙扣",
+                price: 48,
+                image: "https://p5.itc.cn/images01/20220417/c5465e76da544cceb1e035ef0630f502.jpeg",
+                description: "创意设计的明代官服造型钥匙扣，精致小巧，寓意吉祥。",
+                badge: "新品",
+                category: "服饰",
+                featured: false
+            },
+            {
+                id: 8,
+                name: "明式团扇",
+                price: 128,
+                image: "https://ts1.tc.mm.bing.net/th/id/R-C.274a697f93ca416b73e7c350fdb3c5dd?rik=RD5aXSBoV3Zu9Q&riu=http%3a%2f%2fn.sinaimg.cn%2fsinakd20116%2f692%2fw592h900%2f20230209%2f66a0-ab68670f1e1ece49576acd49d831379a.jpg&ehk=9n%2fSCJ5Uq6EdTJ7%2bAO9fGO5xcg%2bDwMgFi7IXSd3tl50%3d&risl=&pid=ImgRaw&r=0",
+                description: "手工绘制花鸟图案的团扇，传统工艺与现代设计完美结合。",
+                badge: "",
+                category: "服饰",
+                featured: false
+            },
+            
+            // 文房类
+            {
+                id: 9,
+                name: "文房四宝礼盒",
+                price: 288,
+                image: "https://img.alicdn.com/i3/2204196353918/O1CN01sOYneC1eoUmo0O5hn_!!2204196353918.jpg",
+                description: "精选优质毛笔、徽墨、宣纸和端砚，适合书法爱好者及送礼之选。",
+                badge: "热销",
+                category: "文房",
+                featured: true
+            },
+            {
+                id: 10,
+                name: "明代书画复制品",
+                price: 158,
+                image: "https://ts1.tc.mm.bing.net/th/id/R-C.b4cf59e40ee38cef5dd21029ac7ebe46?rik=9g5bSaMuwY3hBg&riu=http%3a%2f%2fwww.yac8.com%2fupFiles%2finfoImg%2f201806%2f2018062871478729.jpg&ehk=%2bftf6oNs9HimGxctO%2fvAN4i44v5IaXTA1m86LdPd9FQ%3d&risl=&pid=ImgRaw&r=0",
+                description: "高清复制的明代名家书画作品，装裱精美，适合家居装饰。",
+                badge: "",
+                category: "文房",
+                featured: false
+            },
+            {
+                id: 11,
+                name: "明式印章",
+                price: 88,
+                image: "https://pic.huitu.com/pic/20201101/157467_20201101230734132070_0.jpg",
+                description: "手工雕刻的明式风格印章，选用优质石材，适合收藏或实用。",
+                badge: "",
+                category: "文房",
+                featured: false
+            },
+            {
+                id: 12,
+                name: "明代笔架",
+                price: 128,
+                image: "https://img1.artron.net/auction/2019/art515144/d/art5151440616.jpg",
+                description: "实木雕刻的明代风格笔架，设计简洁优雅，实用与装饰兼备。",
+                badge: "新品",
+                category: "文房",
+                featured: false
+            },
+            
+            // 家居类
+            {
+                id: 13,
+                name: "古典屏风摆件",
+                price: 428,
+                image: "https://n.sinaimg.cn/sinakd10116/433/w1066h967/20210310/175d-kmeeius4660446.jpg",
+                description: "手工雕刻木质屏风，描绘明朝山水画作，适合家居装饰与空间分隔。",
+                badge: "限量",
+                category: "家居",
+                featured: true
+            },
+            {
+                id: 14,
+                name: "明式茶台",
+                price: 688,
+                image: "https://n.sinaimg.cn/sinakd10116/767/w1546h821/20210310/cb78-kmeeius4653475.jpg",
+                description: "实木明式茶台，设计简洁大方，适合茶室或客厅使用。",
+                badge: "",
+                category: "家居",
+                featured: false
+            },
+            {
+                id: 15,
+                name: "明式家具模型",
+                price: 328,
+                image: "https://n.sinaimg.cn/sinacn08/640/w1280h960/20181016/34d9-hmivixm8945859.jpg",
+                description: "精致明式家具微缩模型，展现明代家具简洁优雅的线条美。",
+                badge: "新品",
+                category: "家居",
+                featured: false
+            },
+            {
+                id: 16,
+                name: "明代建筑拼图",
+                price: 128,
+                image: "https://cbu01.alicdn.com/img/ibank/O1CN01a2XqSA1Bs2khizasq_!!0-0-cib.jpg",
+                description: "以明代著名建筑为主题的木质拼图，兼具娱乐与教育意义。",
+                badge: "",
+                category: "家居",
+                featured: false
+            },
+            
+            // 饰品类
+            {
+                id: 17,
+                name: "明代玉佩吊坠",
+                price: 258,
+                image: "https://ts1.tc.mm.bing.net/th/id/R-C.0415006457aaccc22983cd0cde317ad8?rik=GRSb3HfebrJ%2bjw&riu=http%3a%2f%2fn.sinaimg.cn%2fsinakd20210112s%2f160%2fw1280h1280%2f20210112%2f97d4-khmynua5857431.jpg&ehk=Mf3dfuVW6rgxSfJ9NuJc0It2Konmr0CNnT90prPauS4%3d&risl=&pid=ImgRaw&r=0",
+                description: "仿明代玉佩造型的吊坠，选用优质玉石，寓意平安吉祥。",
+                badge: "新品",
+                category: "饰品",
+                featured: false
+            },
+            {
+                id: 18,
+                name: "明代发簪",
+                price: 98,
+                image: "https://c-ssl.duitang.com/uploads/item/201808/05/20180805192539_hPitN.jpeg",
+                description: "手工制作的明代风格发簪，精致典雅，适合搭配汉服。",
+                badge: "",
+                category: "饰品",
+                featured: false
+            },
+            {
+                id: 19,
+                name: "明代耳环",
+                price: 128,
+                image: "https://wenhui.whb.cn/u/cms/www/201804/18112555igbr.jpg",
+                description: "仿明代首饰设计的耳环，采用传统工艺，展现古典美。",
+                badge: "热销",
+                category: "饰品",
+                featured: false
+            },
+            
+            // 书籍类
+            {
+                id: 20,
+                name: "明代钱币纪念册",
+                price: 258,
+                image: "https://www.pmgnotes.cn/resources/images/grading/collecting/Ming%20Dynasty%20Note.png?cache=2018-04-06",
+                description: "收录明代代表性钱币的高仿复制品，配以详细历史介绍。",
+                badge: "限量",
+                category: "书籍",
+                featured: false
+            },
+            {
+                id: 21,
+                name: "《明朝那些事儿》",
+                price: 198,
+                image: "https://img.alicdn.com/i2/416222484/O1CN01y00qo21UDiZgTfPZG-416222484.jpg",
+                description: "畅销历史读物精装版，配有精美插图和详细注释。",
+                badge: "热销",
+                category: "书籍",
+                featured: false
+            },
+           
+        ];
+
+        // 购物车数据
+        let cart = JSON.parse(localStorage.getItem('mingyun_cart')) || [];
+        
+        // 当前选中的产品分类
+        let currentCategory = 'all';
+
+        // 页面初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化产品展示
+            renderFeaturedProducts();
+            renderCategoryNav();
+            renderAllProducts();
+            
+            // 初始化购物车
+            updateCartDisplay();
+            
+            // 页面导航
+            setupNavigation();
+            
+            // 设置事件监听器
+            setupEventListeners();
+        });
+
+        // 渲染精选产品
+        function renderFeaturedProducts() {
+            const featuredContainer = document.getElementById('featured-products');
+            const featuredProducts = products.filter(product => product.featured);
+            
+            featuredContainer.innerHTML = featuredProducts.map(product => `
+                <div class="product-card">
+                    ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                    <div class="product-img" style="background-image: url('${product.image}')"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">¥ ${product.price}</div>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="${product.id}">加入购物车</button>
+                            <button class="view-details">查看详情</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 渲染分类导航
+        function renderCategoryNav() {
+            const categoryNav = document.getElementById('category-nav');
+            const categories = ['all', '瓷器', '服饰', '文房', '家居', '饰品', '书籍'];
+            
+            categoryNav.innerHTML = categories.map(category => `
+                <button class="category-btn ${category === 'all' ? 'active' : ''}" data-category="${category}">
+                    ${category === 'all' ? '全部' : category}
+                </button>
+            `).join('');
+        }
+
+        // 渲染所有产品
+        function renderAllProducts() {
+            const allProductsContainer = document.getElementById('all-products');
+            let filteredProducts = products;
+            
+            if (currentCategory !== 'all') {
+                filteredProducts = products.filter(product => product.category === currentCategory);
+            }
+            
+            allProductsContainer.innerHTML = filteredProducts.map(product => `
+                <div class="product-card">
+                    ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                    <div class="product-img" style="background-image: url('${product.image}')"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">¥ ${product.price}</div>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="${product.id}">加入购物车</button>
+                           
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 设置页面导航
+        function setupNavigation() {
+            // 导航链接点击事件
+            document.querySelectorAll('a[data-page]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+            
+            // 购物车图标点击事件
+            document.querySelector('.cart-icon').addEventListener('click', function() {
+                showPage('cart');
+            });
+            
+            // 分类按钮点击事件
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 更新活动按钮
+                    document.querySelectorAll('.category-btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // 更新当前分类
+                    currentCategory = this.getAttribute('data-category');
+                    
+                    // 重新渲染产品
+                    renderAllProducts();
+                });
+            });
+        }
+
+        // 显示指定页面
+        function showPage(pageId) {
+            // 隐藏所有页面
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // 显示目标页面
+            document.getElementById(pageId).classList.add('active');
+            
+            // 特殊页面处理
+            if (pageId === 'cart') {
+                updateCartDisplay();
+            } else if (pageId === 'checkout') {
+                updateCheckoutDisplay();
+            }
+        }
+
+        // 设置事件监听器
+        function setupEventListeners() {
+            // 添加购物车按钮
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-to-cart')) {
+                    const productId = parseInt(e.target.getAttribute('data-id'));
+                    addToCart(productId);
+                }
+            });
+            
+            // 结算按钮
+            document.getElementById('proceedToCheckout').addEventListener('click', function() {
+                if (cart.length > 0) {
+                    showPage('checkout');
+                } else {
+                    alert('您的购物车是空的，请先添加商品');
+                }
+            });
+            
+            // 支付方式选择
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.payment-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                });
+            });
+            
+            // 完成支付按钮
+            document.getElementById('completePayment').addEventListener('click', function() {
+                const shippingForm = document.getElementById('shippingInfoForm');
+                if (shippingForm.checkValidity()) {
+                    // 模拟支付处理
+                    setTimeout(function() {
+                        // 生成订单号
+                        const orderNumber = 'MY' + new Date().getTime();
+                        document.getElementById('order-number').textContent = `订单号: ${orderNumber}`;
+                        
+                        // 清空购物车
+                        cart = [];
+                        localStorage.setItem('mingyun_cart', JSON.stringify(cart));
+                        updateCartCount();
+                        
+                        // 显示确认页面
+                        showPage('confirmation');
+                    }, 1500);
+                } else {
+                    alert('请填写完整的收货信息');
+                }
+            });
+        }
+
+        // 添加到购物车
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            // 保存到本地存储
+            localStorage.setItem('mingyun_cart', JSON.stringify(cart));
+            
+            // 更新购物车显示
+            updateCartCount();
+            
+            // 显示添加成功提示
+
+            alert(`已成功将"${product.name}"加入购物车！`);
+        }
+
+        // 更新购物车数量显示
+        function updateCartCount() {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = totalItems;
+        }
+
+        // 更新购物车显示
+        function updateCartDisplay() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const emptyCartMessage = cartItemsContainer.querySelector('.empty-cart-message');
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '';
+                emptyCartMessage.style.display = 'block';
+                cartItemsContainer.appendChild(emptyCartMessage);
+                updateCartSummary(0, 0, 0);
+                return;
+            }
+            
+            emptyCartMessage.style.display = 'none';
+            
+            // 计算总价
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            const shipping = subtotal > 0 ? 25 : 0;
+            const discount = subtotal > 300 ? 50 : 0;
+            const total = subtotal + shipping - discount;
+            
+            // 更新购物车商品列表
+            cartItemsContainer.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-img" style="background-image: url('${item.image}')"></div>
+                    <div class="cart-item-details">
+                        <h3 class="cart-item-title">${item.name}</h3>
+                        <div class="cart-item-price">¥ ${item.price}</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" data-id="${item.id}" data-action="decrease">-</button>
+                            <input type="text" class="quantity-input" value="${item.quantity}" readonly>
+                            <button class="quantity-btn" data-id="${item.id}" data-action="increase">+</button>
+                        </div>
+                        <button class="remove-btn" data-id="${item.id}">移除商品</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            // 更新购物车摘要
+            updateCartSummary(subtotal, shipping, discount, total);
+            
+            // 添加购物车项目事件监听器
+            setupCartItemEvents();
+        }
+
+        // 设置购物车项目事件
+        function setupCartItemEvents() {
+            // 数量增减按钮
+            document.querySelectorAll('.quantity-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    const action = this.getAttribute('data-action');
+                    updateCartItemQuantity(productId, action);
+                });
+            });
+            
+            // 移除商品按钮
+            document.querySelectorAll('.remove-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    removeFromCart(productId);
+                });
+            });
+        }
+
+        // 更新购物车商品数量
+        function updateCartItemQuantity(productId, action) {
+            const item = cart.find(item => item.id === productId);
+            if (!item) return;
+            
+            if (action === 'increase') {
+                item.quantity += 1;
+            } else if (action === 'decrease' && item.quantity > 1) {
+                item.quantity -= 1;
+            }
+            
+            // 保存到本地存储
+            localStorage.setItem('mingyun_cart', JSON.stringify(cart));
+            
+            // 更新购物车显示
+            updateCartDisplay();
+            updateCartCount();
+        }
+
+        // 从购物车移除商品
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            
+            // 保存到本地存储
+            localStorage.setItem('mingyun_cart', JSON.stringify(cart));
+            
+            // 更新购物车显示
+            updateCartDisplay();
+            updateCartCount();
+        }
+
+        // 更新购物车摘要
+        function updateCartSummary(subtotal, shipping, discount, total) {
+            document.getElementById('subtotal').textContent = `¥ ${subtotal}`;
+            document.getElementById('shipping').textContent = `¥ ${shipping}`;
+            document.getElementById('discount').textContent = `- ¥ ${discount}`;
+            document.getElementById('total').textContent = `¥ ${total}`;
+        }
+
+        // 更新结算页面显示
+        function updateCheckoutDisplay() {
+            const checkoutItemsContainer = document.getElementById('checkout-items');
+            
+            // 计算总价
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            const shipping = subtotal > 0 ? 25 : 0;
+            const discount = subtotal > 300 ? 50 : 0;
+            const total = subtotal + shipping - discount;
+            
+            // 更新结算商品列表
+            checkoutItemsContainer.innerHTML = cart.map(item => `
+                <div class="summary-row">
+                    <span>${item.name} × ${item.quantity}</span>
+                    <span>¥ ${item.price * item.quantity}</span>
+                </div>
+            `).join('');
+            
+            // 更新结算摘要
+            document.getElementById('checkout-subtotal').textContent = `¥ ${subtotal}`;
+            document.getElementById('checkout-shipping').textContent = `¥ ${shipping}`;
+            document.getElementById('checkout-discount').textContent = `- ¥ ${discount}`;
+            document.getElementById('checkout-total').textContent = `¥ ${total}`;
+            
+            // 更新支付按钮
+            document.getElementById('completePayment').textContent = `立即支付 ¥${total}`;
+        }
+    </script>
+</body>
+</html>

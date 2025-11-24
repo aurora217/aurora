@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华夏历史研究院 - 探索历史真相，传承文明智慧</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', 'SimHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f2e9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 导航栏样式 */
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .logo span {
+            color: #e74c3c;
+        }
+        
+        nav {
+            float: right;
+            margin-top: 8px;
+        }
+        
+        nav ul {
+            list-style: none;
+        }
+        
+        nav ul li {
+            display: inline-block;
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #e74c3c;
+        }
+        
+        /* 横幅样式 */
+        .banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x600') no-repeat center center;
+            background-size: cover;
+            color: #fff;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .banner h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .banner p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        
+        /* 内容区块样式 */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #2c3e50;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #e74c3c;
+        }
+        
+        /* 研究领域样式 */
+        .research-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .research-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .research-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .research-content {
+            padding: 25px;
+        }
+        
+        .research-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        /* 时间轴样式 */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #2c3e50;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-content h3 {
+            margin-bottom: 10px;
+            color: #e74c3c;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #e74c3c;
+            border: 4px solid #2c3e50;
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        /* 团队成员样式 */
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-card {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 30px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .team-card h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        
+        .team-card p {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #e74c3c;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #e74c3c;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .logo, nav {
+                float: none;
+                text-align: center;
+            }
+            
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+            
+            .banner h1 {
+                font-size: 36px;
+            }
+            
+            .banner p {
+                font-size: 18px;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .timeline-item:nth-child(odd)::after,
+            .timeline-item:nth-child(even)::after {
+                left: 21px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <div class="logo">华夏<span>历史研究院</span></div>
+            <nav>
+                <ul>
+                    <li><a href="明朝.html">首页</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 横幅 -->
+    <section class="banner">
+        <div class="container">
+            <h1>探索历史真相，传承文明智慧</h1>
+            <p>华夏历史研究院致力于中国历史文化的深入研究与传播，通过严谨的学术态度和创新的研究方法，还原历史真相，传承中华文明。</p>
+           
+        </div>
+    </section>
+
+    <!-- 研究领域 -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>研究领域</h2>
+            </div>
+            <div class="research-areas">
+                <div class="research-card">
+                    <div class="research-img" style="background-image: url('OIP-C (9).webp')"></div>
+                    <div class="research-content">
+                        <h3>古代史研究</h3>
+                        <p>专注于先秦至明清时期的政治制度、社会经济、文化思想等方面的研究，深入探索中国古代文明的发展脉络。</p>
+                    </div>
+                </div>
+                <div class="research-card">
+                    <div class="research-img" style="background-image: url('dc1e9b880c8445f786517ab539dc4e185830125742482637870.jpg')"></div>
+                    <div class="research-content">
+                        <h3>近现代史研究</h3>
+                        <p>研究1840年以来的中国历史变迁，包括社会转型、思想变革、国际关系等，揭示中国现代化进程的历史逻辑。</p>
+                    </div>
+                </div>
+                <div class="research-card">
+                    <div class="research-img" style="background-image: url('59AA8F16C435F630D9580291B1F6694E1ADC8D13_size116_w1920_h1080.jpg')"></div>
+                    <div class="research-content">
+                        <h3>文化遗产保护</h3>
+                        <p>致力于历史文化遗产的调查、保护与利用研究，推动传统文化在现代社会的传承与创新。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 研究院发展历程 -->
+    <section style="background-color: #f9f9f9;">
+        <div class="container">
+            <div class="section-title">
+                <h2>研究院发展历程</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1985年</h3>
+                        <p>华夏历史研究院正式成立，初期专注于中国古代史研究。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1992年</h3>
+                        <p>设立文化遗产保护研究中心，拓展研究领域。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2001年</h3>
+                        <p>与多所高校建立合作关系，开展联合研究项目。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2010年</h3>
+                        <p>创办《华夏历史研究》学术期刊，成为国内重要历史学期刊。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2018年</h3>
+                        <p>建立数字历史实验室，推动历史研究的数字化进程。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2023年</h3>
+                        <p>启动"中华文明探源工程"，开展多学科交叉研究。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 研究团队 -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>研究团队</h2>
+            </div>
+            <div class="team-members">
+                <div class="team-card">
+                   
+                    <h3>张明远 教授</h3>
+                    <p>研究院院长，古代史研究专家</p>
+                </div>
+                <div class="team-card">
+                    <h3>李静 研究员</h3>
+                    <p>近现代史研究中心主任</p>
+                </div>
+                <div class="team-card">
+                   
+                    <h3>王建国 教授</h3>
+                    <p>文化遗产保护首席专家</p>
+                </div>
+                <div class="team-card">
+                   
+                    <h3>陈思 副研究员</h3>
+                    <p>数字历史实验室负责人</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <ul>
+                        <li>地址：北京市海淀区学院路123号</li>
+                        <li>电话：010-12345678</li>
+                        <li>邮箱：contact@history-research.org</li>
+                    </ul>
+                </div>
+               
+              
+            </div>
+            <div class="copyright">
+                <p>版权所有 &copy; 2023 华夏历史研究院 | 保留所有权利</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

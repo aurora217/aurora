@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>明朝紫禁城建筑群</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "SimSun", "宋体", serif;
+        }
+        
+        body {
+            background-color: #f5f1e6;
+            color: #333;
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.05"><rect fill="%238b0000" width="100" height="100"/></svg>');
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(to right, #8b0000, #b22222);
+            color: #f5f1e6;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23ffffff" opacity="0.1" d="M20,20 L80,20 L80,80 L20,80 Z M30,30 L70,30 L70,70 L30,70 Z"/></svg>');
+            background-size: 100px;
+        }
+		 nav {
+            background-color: #5c1a1a;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-list li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            display: block;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-list li a:hover {
+            background: #8e2d2d;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .intro {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #8b0000;
+            position: relative;
+        }
+        
+        .intro::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: #8b0000;
+            clip-path: polygon(50% 100%, 0 0, 100% 0);
+        }
+        
+        .intro p {
+            margin-bottom: 15px;
+            text-indent: 2em;
+            font-size: 1.1rem;
+        }
+        
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .building-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .building-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .building-image {
+            height: 200px;
+            background-color: #d4b483;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8b0000;
+            font-size: 1.5rem;
+            font-weight: bold;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .building-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .building-card:hover .building-image img {
+            transform: scale(1.05);
+        }
+        
+        .building-content {
+            padding: 20px;
+        }
+        
+        .building-content h3 {
+            color: #8b0000;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #f5f1e6;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .building-content h3::before {
+            content: "◉";
+            margin-right: 8px;
+            font-size: 0.8em;
+        }
+        
+        .building-content p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+        
+        .timeline {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #8b0000, #b22222);
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .timeline h2 {
+            color: #8b0000;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .timeline h2::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 10%;
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #8b0000, transparent);
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #d4b483;
+            position: relative;
+        }
+        
+        .timeline-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: #8b0000;
+            min-width: 120px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .timeline-year::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background-color: #8b0000;
+            border-radius: 50%;
+        }
+        
+        .timeline-content {
+            flex: 1;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #8b0000;
+            color: #f5f1e6;
+            border-radius: 8px;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23ffffff" opacity="0.05" d="M0,0 L100,0 L100,100 L0,100 Z M10,10 L90,10 L90,90 L10,90 Z"/></svg>');
+            background-size: 80px;
+        }
+        
+        footer p {
+            position: relative;
+        }
+        
+        @media (max-width: 768px) {
+            .architecture-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+            }
+            
+            .timeline-year {
+                margin-bottom: 10px;
+                padding-left: 0;
+            }
+            
+            .timeline-year::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>明朝紫禁城建筑群</h1>
+            <p class="subtitle">天子居所 · 天下之中</p>
+			<nav>
+                       <div class="container nav-container">
+                       <ul class="nav-list">
+                          <li><a href="明朝.html">首页</a></li>
+                
+                           </ul>
+                            </div>
+                </nav>
+        </header>
+        
+        <section class="intro">
+            <p>紫禁城，即北京故宫，是明清两代的皇家宫殿，位于北京中轴线的中心。明朝永乐四年（1406年）开始建设，以南京故宫为蓝本营建，到永乐十八年（1420年）建成，成为明清两朝二十四位皇帝的皇宫。</p>
+            <p>紫禁城南北长961米，东西宽753米，四面围有高10米的城墙，城外有宽52米的护城河。紫禁城有四座城门，南面为午门，北面为神武门，东面为东华门，西面为西华门。城墙的四角，各有一座风姿绰约的角楼。</p>
+            <p>紫禁城内的建筑分为外朝和内廷两部分。外朝的中心为太和殿、中和殿、保和殿，统称三大殿，是国家举行大典礼的地方。内廷的中心是乾清宫、交泰殿、坤宁宫，统称后三宫，是皇帝和皇后居住的正宫。</p>
+        </section>
+        
+        <section class="architecture-grid">
+            <div class="building-card">
+                <div class="building-image">
+                    <img src="0518-hvhrcxm3093404.jpg" alt="太和殿">
+                </div>
+                <div class="building-content">
+                    <h3>太和殿</h3>
+                    <p>俗称"金銮殿"，是紫禁城内体量最大、等级最高的建筑物。明初称奉天殿，后改称皇极殿，清顺治二年改称太和殿。用于举行各种盛大典礼，如皇帝登基、大婚、册立皇后等。</p>
+                </div>
+            </div>
+            
+            <div class="building-card">
+                <div class="building-image">
+                    <img src="OIP-C (8).webp" alt="中和殿">
+                </div>
+                <div class="building-content">
+                    <h3>中和殿</h3>
+                    <p>位于太和殿与保和殿之间，是皇帝去太和殿大典之前休息并接受执事官员朝拜的地方。凡遇皇帝亲祭，如祭天坛、地坛，皇帝于前一日在中和殿阅览祝文。</p>
+                </div>
+            </div>
+            
+            <div class="building-card">
+                <div class="building-image">
+                    <img src="s5efedbf9edae0.jpg" alt="保和殿">
+                </div>
+                <div class="building-content">
+                    <h3>保和殿</h3>
+                    <p>保和殿于明清两代用途不同，明朝大典前皇帝常在此更衣，册立皇后、皇太子时，皇帝在此殿受贺。清朝每年除夕、正月十五，皇帝赐宴外藩、王公及一二品大臣，场面十分壮观。</p>
+                </div>
+            </div>
+            
+            <div class="building-card">
+                <div class="building-image">
+                    <img src="s5e997affc5961.jpg" alt="乾清宫">
+                </div>
+                <div class="building-content">
+                    <h3>乾清宫</h3>
+                    <p>内廷后三宫之一，是皇帝的正寝宫殿。明朝的十四个皇帝和清朝的顺治、康熙两个皇帝，都以乾清宫为寝宫，在这里居住并处理日常政务。</p>
+                </div>
+            </div>
+            
+            <div class="building-card">
+                <div class="building-image">
+                    <img src="s5e9979138fc86.jpg" alt="交泰殿">
+                </div>
+                <div class="building-content">
+                    <h3>交泰殿</h3>
+                    <p>内廷后三宫之一，位于乾清宫和坤宁宫之间，殿名取自《易经》，含"天地交合、康泰美满"之意。是皇后在节庆日接受朝贺的地方。</p>
+                </div>
+            </div>
+            
+            <div class="building-card">
+                <div class="building-image">
+                    <img src="R-C (13).jpg" alt="坤宁宫">
+                </div>
+                <div class="building-content">
+                    <h3>坤宁宫</h3>
+                    <p>内廷后三宫之一，在明朝是皇后的寝宫。清朝仿盛京清宁宫的形制重修，将西暖阁改为祭祀萨满教的神堂，东暖阁则作为皇帝大婚的洞房。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="timeline">
+            <h2>紫禁城历史沿革</h2>
+            <div class="timeline-item">
+                <div class="timeline-year">1406年</div>
+                <div class="timeline-content">明成祖朱棣下诏以南京皇宫为蓝本，兴建北京皇宫和城垣</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1420年</div>
+                <div class="timeline-content">紫禁城竣工，明成祖朱棣正式迁都北京</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1421年</div>
+                <div class="timeline-content">紫禁城三大殿遭雷击焚毁，此后多次重建</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1557年</div>
+                <div class="timeline-content">紫禁城大火，前三殿、奉天门、文武楼、午门全部被焚毁</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1597年</div>
+                <div class="timeline-content">紫禁城再次大火，焚毁前三殿、后三宫</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1644年</div>
+                <div class="timeline-content">李自成攻占北京，明朝灭亡，清朝继续使用紫禁城</div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>紫禁城是中国古代宫廷建筑之精华，是世界上现存规模最大、保存最为完整的木质结构古建筑群之一</p>
+            <p>© 2023 明朝紫禁城建筑群展示</p>
+        </footer>
+    </div>
+</body>
+</html>

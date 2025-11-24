@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大明文华典章 - 明代典章制度汇编</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SimSun', '宋体', serif;
+        }
+        
+        body {
+            background-color: #f8f4e9;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23b3896c' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid #c33;
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .header-decoration {
+            position: absolute;
+            width: 100%;
+            height: 15px;
+            background: linear-gradient(90deg, transparent 10%, #c33 30%, #c33 70%, transparent 90%);
+            bottom: -2px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #900;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+            letter-spacing: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #633;
+            font-style: italic;
+        }
+        
+        .content-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .category {
+            flex: 1;
+            min-width: 300px;
+            background: #fff;
+            border: 1px solid #c99;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            color: #900;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #c33;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .document-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #c99;
+        }
+        
+        .document-item:last-child {
+            border-bottom: none;
+        }
+        
+        .document-title {
+            font-size: 1.2rem;
+            color: #633;
+            margin-bottom: 10px;
+        }
+        
+        .document-content {
+            line-height: 1.6;
+            text-align: justify;
+            font-size: 0.95rem;
+        }
+        
+        .document-content p {
+            margin-bottom: 10px;
+            text-indent: 2em;
+        }
+        
+        .special-section {
+            background: linear-gradient(to right, #f8f4e9, #fff4e9, #f8f4e9);
+            border: 1px solid #c99;
+            border-radius: 5px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .special-title {
+            font-size: 1.8rem;
+            color: #900;
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .special-title:before, .special-title:after {
+            content: "◆";
+            color: #c33;
+            margin: 0 15px;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #633;
+            font-size: 0.9rem;
+            border-top: 1px solid #c99;
+            margin-top: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">明</div>
+                <h1>大明会典</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="明朝.html"><i class="fas fa-home"></i> 首页</a></li>
+                    <li><a href="王朝兴衰.html"><i class="fas fa-crown"></i> 王朝兴衰</a></li>
+                    <li><a href="文华典章.html"><i class="fas fa-paint-brush"></i> 文华典章</a></li>
+                    <li><a href="世情百态.html"><i class="fas fa-users"></i> 世情百态</a></li>
+                    <li><a href="互动探索.html"><i class="fas fa-gamepad"></i> 互动探索</a></li>
+					<li><a href="明朝文创.html">明朝文创</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <header>
+            <h1>大明文华典章</h1>
+            <div class="subtitle">明代典章制度文化汇编</div>
+            <div class="header-decoration"></div>
+        </header>
+        
+        <div class="content-section">
+            <div class="category">
+                <h2 class="category-title">官制典章</h2>
+                
+                <div class="document-item">
+                    <h3 class="document-title">《大明会典·吏部》</h3>
+                    <div class="document-content">
+                        <p>大明设吏部，为六部之首，掌天下文官选授、封勋、考课之政令。尚书一人，正二品；左右侍郎各一人，正三品。其属有四清吏司：文选、验封、稽勋、考功。</p>
+                        <p>凡选官之制，每岁有大选，有急选，有远方选，有岁贡就教选。间有拣选，有举人乞恩选。选人咸登资簿，厘其流品，平其铨注，而序迁之。</p>
+                    </div>
+                </div>
+                
+                <div class="document-item">
+                    <h3 class="document-title">《百官志·内阁》</h3>
+                    <div class="document-content">
+                        <p>内阁设于永乐年间，初仅掌诰敕起草，后渐参预机务。置内阁大学士，秩正五品，然掌批答奏章，承旨撰拟，实握相权。</p>
+                        <p>至中叶以后，朝位班次俱列六部之上，首辅权同宰相。凡中外奏章，许用小票墨书，贴各疏面以进，谓之条旨，中易红书批出御笔亲书。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h2 class="category-title">礼制典章</h2>
+                
+                <div class="document-item">
+                    <h3 class="document-title">《大明集礼·吉礼》</h3>
+                    <div class="document-content">
+                        <p>凡祭祀之制，分大祀、中祀、小祀三等。大祀曰天地、宗庙、社稷、山川；中祀曰朝日、夕月、先农、太岁；小祀曰风师、雨师、雷师、星辰。</p>
+                        <p>天子亲祀天地于南郊，服衮冕，乘玉辂，备法驾，仪卫森然。祭之日，陈设仪仗，奏雅乐，行三献礼，读祝文，燔柴告天，望燎而礼成。</p>
+                    </div>
+                </div>
+                
+                <div class="document-item">
+                    <h3 class="document-title">《礼部志稿·宾礼》</h3>
+                    <div class="document-content">
+                        <p>凡蕃国来朝，先遣使奉表进贡方物。其仪：皇帝御奉天殿，蕃使随贡物由奉天东门入，至丹墀等候。宣表毕，蕃使行四拜礼，礼部官捧贡物献于御前。</p>
+                        <p>朝贡完毕，赐宴于会同馆，赏赐有差。四夷朝贡，东南曰琉球、暹罗；西南曰缅甸、安南；西北曰哈密、吐鲁番；东北曰朝鲜、女真。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <div class="category">
+                <h2 class="category-title">律法典章</h2>
+                
+                <div class="document-item">
+                    <h3 class="document-title">《大明律·名例》</h3>
+                    <div class="document-content">
+                        <p>大明律共三十卷，四百六十条。首篇为名例律，冠于篇首，曰五刑、十恶、八议，以及应议者犯罪、职官有犯、军官有犯、文武官犯公罪、文武官犯私罪等条。</p>
+                        <p>五刑之制：笞刑五，自一十至五十；杖刑五，自六十至一百；徒刑五，自一年至三年；流刑三，自二千里至三千里；死刑二，绞、斩。</p>
+                    </div>
+                </div>
+                
+                <div class="document-item">
+                    <h3 class="document-title">《问刑条例·刑律》</h3>
+                    <div class="document-content">
+                        <p>弘治十三年，颁问刑条例二百九十七条；嘉靖二十九年，续增二百四十九条；万历十三年，又增三百八十二条。例与律并行，以补律之未备。</p>
+                        <p>凡问刑，依律议拟，照例发落。情犯可疑者，奏请定夺。其有特旨发落者，不在此限。内外问刑衙门，务要详审允当，不许故出入人罪。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h2 class="category-title">经济典章</h2>
+                
+                <div class="document-item">
+                    <h3 class="document-title">《万历会计录·赋役》</h3>
+                    <div class="document-content">
+                        <p>天下田土，洪武二十六年核计八百五十万七千六百二十三顷。赋役之法，以黄册为准。册有丁有田，丁有役，田有租。租曰夏税，曰秋粮，凡二等。</p>
+                        <p>万历六年，丈量天下田亩，总计七百一万三千九百七十六顷。一条鞭法者，总括一州县之赋役，量地计丁，丁粮毕输于官。一岁之役，官为佥募。</p>
+                    </div>
+                </div>
+                
+                <div class="document-item">
+                    <h3 class="document-title">《盐法志·盐引》</h3>
+                    <div class="document-content">
+                        <p>明初置局设官，掌盐政。行开中法，令商输粮边塞，予盐引，支盐于各盐场。盐引有定数，每引四百斤，官给纸券，书商姓名及引目数量，许其贩卖。</p>
+                        <p>两淮、两浙、长芦、山东、福建、河东为六大盐区，岁办盐课有差。私贩盐者，罪至徒流。伪造盐引者，处斩。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="special-section">
+            <h2 class="special-title">大明典章沿革</h2>
+            <div class="document-content">
+                <p>明代典章制度，多承唐宋之旧而损益之。太祖初定天下，即命左丞相李善长等纂修《大明令》，定国家制度。洪武六年，又命刑部尚书刘惟谦详定《大明律》，次年颁行。</p>
+                <p>永乐年间，成祖命解缙等纂修《永乐大典》，汇古今典章制度为一书。孝宗弘治十年，命徐溥等纂修《大明会典》，至十五年书成，共一百八十卷，详述有明一代典章制度。</p>
+                <p>世宗嘉靖八年，续修《大明会典》，神宗万历四年，张居正等再修，增至二百二十八卷。明代典章制度之完备，超越前代，为清朝所沿袭。</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>大明文华典章 · 中华传统文化瑰宝</p>
+            <p>本网页内容仅供参考学习，转载请注明出处</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大明王朝兴衰史</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Serif SC', 'Microsoft YaHei', serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #1a1a1a, #2d1c13);
+            color: #e8e0d0;
+            line-height: 1.6;
+            background-attachment: fixed;
+        }
+        
+        header {
+            background: linear-gradient(to right, #8b0000, #a52a2a);
+            color: #ffd700;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 5px solid #ffd700;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50%" y="50%" font-size="80" text-anchor="middle" fill="rgba(255,215,0,0.05)" dominant-baseline="middle">明</text></svg>');
+            background-size: 200px;
+            pointer-events: none;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .intro {
+            background: rgba(139, 0, 0, 0.2);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 5px solid #ffd700;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+            padding: 1rem;
+        }
+        
+        .timeline:before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #ffd700;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            width: 50%;
+            padding: 20px 40px;
+            position: relative;
+            background: rgba(139, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            border-right: 3px solid #ffd700;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            border-left: 3px solid #ffd700;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            top: 20px;
+            width: 80px;
+            height: 80px;
+            background: #8b0000;
+            color: #ffd700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: 3px solid #ffd700;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-year {
+            right: -40px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-year {
+            left: -40px;
+        }
+        
+        .timeline-content h3 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+        
+
+        .card {
+            background: rgba(139, 0, 0, 0.2);
+            border-radius: 10px;
+            width: 300px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid #ffd700;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffd700;
+            margin-bottom: 1rem;
+        }
+        
+        .card h3 {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card p {
+            font-size: 0.9rem;
+        }
+        
+        .quote {
+            font-style: italic;
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(139, 0, 0, 0.2);
+            border-radius: 10px;
+            border-left: 5px solid #ffd700;
+            border-right: 5px solid #ffd700;
+        }
+        
+        .quote p {
+            font-size: 1.5rem;
+            color: #ffd700;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #1a1a1a;
+            color: #ffd700;
+            margin-top: 2rem;
+            border-top: 3px solid #8b0000;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline:before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 20px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-year,
+            .timeline-item:nth-child(even) .timeline-year {
+                left: -50px;
+                right: auto;
+            }
+            
+            .timeline-item:nth-child(odd) {
+                border-right: none;
+                border-left: 3px solid #ffd700;
+            }
+        }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">明</div>
+                <h1>大明会典</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="明朝.html"><i class="fas fa-home"></i> 首页</a></li>
+                    <li><a href="王朝兴衰.html"><i class="fas fa-crown"></i> 王朝兴衰</a></li>
+                    <li><a href="文华典章.html"><i class="fas fa-paint-brush"></i> 文华典章</a></li>
+                    <li><a href="世情百态.html"><i class="fas fa-users"></i> 世情百态</a></li>
+                    <li><a href="互动探索.html"><i class="fas fa-gamepad"></i> 互动探索</a></li>
+					<li><a href="明朝文创.html">明朝文创</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <header>
+        <h1>大明王朝兴衰史</h1>
+        <div class="subtitle">1368年 - 1644年</div>
+        <p>中国历史上最后一个由汉族建立的封建王朝</p>
+    </header>
+    
+    <div class="container">
+        <section class="intro">
+            <h2>明朝概述</h2>
+            <p>明朝（1368年－1644年）是中国历史上一个重要的朝代，由明太祖朱元璋建立，共传十六帝，享国二百七十六年。明朝时期中国的经济、文化、艺术和科技都达到了很高的成就，同时也是中国历史上一个充满变革与挑战的时期。</p>
+            <p>明朝初期国力强盛，经洪武之治、永乐盛世、仁宣之治等治世，政治清明、国力强盛。中期经土木之变由盛转衰，后经弘治中兴、嘉靖中兴、万历中兴国势复振。晚明因政治腐败、东林党争和天灾外患导致国力衰退，最终被李自成领导的农民起义推翻。</p>
+        </section>
+        
+        <h2 style="text-align: center; color: #ffd700; margin: 2rem 0;">明朝兴衰时间线</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">1368</div>
+                <div class="timeline-content">
+                    <h3>明朝建立</h3>
+                    <p>朱元璋在应天府（今南京）称帝，国号大明，年号洪武，结束了元朝在全国的统治。</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">1405</div>
+                <div class="timeline-content">
+                    <h3>郑和下西洋</h3>
+                    <p>永乐帝派遣郑和率领庞大船队出使西洋，开启了中国历史上规模最大的航海活动。</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">1420</div>
+                <div class="timeline-content">
+                    <h3>迁都北京</h3>
+                    <p>明成祖朱棣迁都北京，建造紫禁城，强化北方边防，巩固中央集权。</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">1449</div>
+                <div class="timeline-content">
+                    <h3>土木之变</h3>
+                    <p>明英宗在土木堡被瓦剌俘虏，明朝由盛转衰的开始。</p>
+
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">1560s</div>
+                <div class="timeline-content">
+                    <h3>戚继光抗倭</h3>
+                    <p>戚继光在东南沿海抗击倭寇，保卫海疆，成为民族英雄。</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">1580s</div>
+                <div class="timeline-content">
+                    <h3>张居正改革</h3>
+                    <p>内阁首辅张居正推行一系列改革措施，试图挽救明朝危机。</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">1618</div>
+                <div class="timeline-content">
+                    <h3>后金崛起</h3>
+                    <p>努尔哈赤以"七大恨"誓师伐明，明朝与后金战争开始。</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">1644</div>
+                <div class="timeline-content">
+                    <h3>明朝灭亡</h3>
+                    <p>李自成攻入北京，崇祯帝自缢于煤山，明朝灭亡。随后清军入关，建立清朝。</p>
+                </div>
+            </div>
+        </div>
+        
+        <h2 style="text-align: center; color: #ffd700; margin: 3rem 0 2rem 0;">明朝重要人物</h2>
+        
+        <div class="cards-container">
+            <div class="card">
+                <img src="R-C (11).jpg" alt="朱元璋">
+                <h3>朱元璋</h3>
+                <p>明朝开国皇帝，年号洪武，从农民起义领袖成为帝王，建立大明王朝。</p>
+            </div>
+            
+            <div class="card">
+                <img src="6357289811579278061065871.jpg" alt="朱棣">
+                <h3>朱棣</h3>
+                <p>明成祖，年号永乐，发动靖难之役夺取皇位，迁都北京，派郑和下西洋。</p>
+            </div>
+            
+            <div class="card">
+                <img src="4cf02d72ffe7402d821b3a0cdbba1e5a~noop_0qfnwkv4tdh.jpg" alt="郑和">
+                <h3>郑和</h3>
+                <p>明代著名航海家、外交家，七下西洋，促进了中外文化交流。</p>
+            </div>
+            
+            <div class="card">
+                <img src="OIP-C (7).webp" alt="戚继光">
+                <h3>戚继光</h3>
+                <p>明代抗倭名将，军事家，率戚家军平定东南沿海倭患。</p>
+            </div>
+        </div>
+        
+        <div class="quote">
+            <p>"治天下者，以人为本。欲令百姓安乐，惟在刺史、县令。"</p>
+            <p style="margin-top: 1rem; font-size: 1.2rem;">—— 明太祖朱元璋</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 大明王朝历史网页 | 设计用于教育目的</p>
+        <p>本网页仅作为历史知识分享，部分图片来源于网络</p>
+    </footer>
+</body>
+</html>

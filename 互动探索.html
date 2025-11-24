@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大明王朝：互动探索</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Serif SC', serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #2a0c0c, #4a1a1a);
+            color: #f8e3c8;
+            line-height: 1.6;
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: #e6c88c;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #d4b575;
+        }
+        
+        .decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,30 Q50,10 70,30 T90,50 T70,70 T30,70 T10,50 T30,30" fill="none" stroke="%23e6c88c" stroke-width="2"/></svg>');
+            background-size: 200px;
+            z-index: 1;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            background: rgba(166, 66, 66, 0.3);
+            border: 2px solid #b28247;
+            color: #e6c88c;
+            padding: 12px 25px;
+            margin: 0 10px 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn:hover {
+            background: rgba(178, 130, 71, 0.5);
+            transform: translateY(-3px);
+        }
+        
+        .tab-btn.active {
+            background: #b28247;
+            color: #2a0c0c;
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #b28247;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background: rgba(114, 35, 35, 0.7);
+            border-radius: 10px;
+            border: 1px solid #b28247;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: scale(1.03);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #e6c88c;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500"><rect x="0" y="0" width="800" height="500" fill="%235a2a2a"/><path d="M100,200 Q250,150 400,250 T700,300" stroke="%237a4a4a" stroke-width="2" fill="none"/><path d="M150,350 Q300,300 450,400 T750,350" stroke="%237a4a4a" stroke-width="2" fill="none"/></svg>');
+            background-size: cover;
+            border: 3px solid #b28247;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .map-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #e6c88c;
+            border: 2px solid #b28247;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .map-point:hover {
+            transform: scale(1.5);
+        }
+        
+        .point-1 { top: 30%; left: 25%; }
+        .point-2 { top: 50%; left: 45%; }
+        .point-3 { top: 40%; left: 65%; }
+        .point-4 { top: 70%; left: 55%; }
+        .point-5 { top: 60%; left: 35%; }
+        
+        .artifact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .artifact-card {
+            background: rgba(114, 35, 35, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #b28247;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .artifact-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .artifact-img {
+            height: 200px;
+            background: linear-gradient(45deg, #5a2a2a, #7a4a4a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .artifact-img i {
+            font-size: 4rem;
+            color: #b28247;
+        }
+        
+        .artifact-info {
+            padding: 20px;
+        }
+        
+        .artifact-title {
+            font-size: 1.3rem;
+            color: #e6c88c;
+            margin-bottom: 10px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: linear-gradient(to bottom, #2a0c0c, #4a1a1a);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            border: 2px solid #b28247;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: #e6c88c;
+            cursor: pointer;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid #b28247;
+            color: #d4b575;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">明</div>
+                <h1>大明会典</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="明朝.html"><i class="fas fa-home"></i> 首页</a></li>
+                    <li><a href="王朝兴衰.html"><i class="fas fa-crown"></i> 王朝兴衰</a></li>
+                    <li><a href="文华典章.html"><i class="fas fa-paint-brush"></i> 文华典章</a></li>
+                    <li><a href="世情百态.html"><i class="fas fa-users"></i> 世情百态</a></li>
+                    <li><a href="互动探索.html"><i class="fas fa-gamepad"></i> 互动探索</a></li>
+					<li><a href="明朝文创.html">明朝文创</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <header>
+            <div class="decoration"></div>
+            <div class="header-content">
+                <h1>大明王朝：互动探索</h1>
+                <p class="subtitle">探索1368年至1644年的明朝历史、文化与艺术</p>
+            </div>
+        </header>
+        
+        <div class="nav-tabs">
+            <button class="tab-btn active" data-tab="timeline">历史时间线</button>
+            <button class="tab-btn" data-tab="map">疆域探索</button>
+            <button class="tab-btn" data-tab="artifacts">文物珍宝</button>
+            <button class="tab-btn" data-tab="culture">文化艺术</button>
+        </div>
+        
+        <div class="tab-content active" id="timeline">
+            <h2>明朝历史大事件</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1368年</div>
+                        <p>朱元璋建立明朝，定都应天府（南京），年号洪武</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1405-1433年</div>
+                        <p>郑和七下西洋，开辟海上丝绸之路，展示明朝国力</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1421年</div>
+                        <p>明成祖朱棣迁都北京，建造紫禁城</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1449年</div>
+                        <p>土木堡之变，明英宗被瓦剌俘虏，明朝由盛转衰</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1560年代</div>
+                        <p>戚继光抗倭，保卫东南沿海安全</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1644年</div>
+                        <p>李自成攻破北京，崇祯帝自缢，明朝灭亡</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="map">
+            <h2>明朝疆域探索</h2>
+            <p>点击地图上的标记点，了解明朝重要地点和历史事件</p>
+            <div class="map-container">
+                <div class="map-point point-1" data-location="南京"></div>
+                <div class="map-point point-2" data-location="北京"></div>
+                <div class="map-point point-3" data-location="丝绸之路"></div>
+                <div class="map-point point-4" data-location="郑和下西洋"></div>
+                <div class="map-point point-5" data-location="长城"></div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="artifacts">
+            <h2>明朝文物珍宝</h2>
+            <p>探索明朝时期的精美艺术品和文物</p>
+            
+                <div class="artifact-card">
+                   
+                        <i class="fas fa-vase"></i>
+                    </div>
+                    <div class="artifact-info">
+                        <h3 class="artifact-title">青花瓷瓶</h3>
+                        <p>明代青花瓷以其精湛工艺和优雅设计闻名于世，代表了瓷器艺术的巅峰。</p>
+                    </div>
+                </div>
+                <div class="artifact-card">
+                    
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <div class="artifact-info">
+                        <h3 class="artifact-title">金丝凤冠</h3>
+                        <p>明代贵族妇女的头饰，采用金丝编织而成，镶嵌珍珠宝石，工艺极其复杂。</p>
+                    </div>
+                </div>
+                <div class="artifact-card">
+                    
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="artifact-info">
+                        <h3 class="artifact-title">明代书画</h3>
+                        <p>明代文人画盛行，注重笔墨情趣和意境表达，形成了独特的艺术风格。</p>
+                    </div>
+               
+           
+        
+        
+        <div class="tab-content" id="culture">
+            <h2>明朝文化艺术</h2>
+            <p>明朝是中国文化发展的重要时期，文学、哲学、艺术和科技都取得了显著成就。</p>
+           
+                <div class="artifact-card">
+                    
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="artifact-info">
+                        <h3 class="artifact-title">四大奇书</h3>
+                        <p>《三国演义》、《水浒传》、《西游记》和《金瓶梅》被称为明代四大奇书。</p>
+                    </div>
+                </div>
+                <div class="artifact-card">
+                    
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                    <div class="artifact-info">
+                        <h3 class="artifact-title">戏曲发展</h3>
+                        <p>明代戏曲艺术蓬勃发展，昆曲成为主流，汤显祖的《牡丹亭》成为经典。</p>
+                    </div>
+                
+                <div class="artifact-card">
+                    
+                        <i class="fas fa-archway"></i>
+                    </div>
+                    <div class="artifact-info">
+                        <h3 class="artifact-title">建筑艺术</h3>
+                        <p>明代建筑风格庄重大气，紫禁城和明孝陵是明代建筑艺术的杰出代表。</p>
+                    </div>
+               
+           
+       
+        
+        <div class="modal" id="infoModal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2 id="modalTitle">Modal Title</h2>
+                <div id="modalContent">
+                    <p>详细信息将在这里显示。</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>大明王朝：互动探索 &copy; 2023 | 设计用于教育目的</p>
+        </footer>
+    </div>
+
+    <script>
+        // 切换标签页功能
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // 移除所有活动状态
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // 添加当前活动状态
+                button.classList.add('active');
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // 模态框功能
+        const modal = document.getElementById('infoModal');
+        const closeBtn = document.querySelector('.close-btn');
+        
+        // 点击时间线项目打开模态框
+        document.querySelectorAll('.timeline-content').forEach(item => {
+            item.addEventListener('click', () => {
+                const title = item.querySelector('.timeline-date').textContent;
+                const content = item.querySelector('p').textContent;
+                
+                document.getElementById('modalTitle').textContent = title;
+                document.getElementById('modalContent').innerHTML = `<p>${content}</p><p>点击此处了解更多关于${title}的明朝历史。</p>`;
+                
+                modal.style.display = 'flex';
+            });
+        });
+        
+        // 点击地图点打开模态框
+        document.querySelectorAll('.map-point').forEach(point => {
+            point.addEventListener('click', () => {
+                const location = point.getAttribute('data-location');
+                
+                document.getElementById('modalTitle').textContent = location;
+                document.getElementById('modalContent').innerHTML = `<p>${location}是明朝历史上重要的地点。</p><p>点击此处探索${location}的历史意义。</p>`;
+                
+                modal.style.display = 'flex';
+            });
+        });
+        
+        // 关闭模态框
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        // 点击模态框外部关闭
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

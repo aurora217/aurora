@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国明史学会 - 官方主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background-color: #8B1A1A;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 80px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        /* 横幅样式 */
+        .banner {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://via.placeholder.com/1200x400') no-repeat center center;
+            background-size: cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .banner-content h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .banner-content p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* 主要内容区样式 */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        section h2 {
+            color: #8B1A1A;
+            border-bottom: 2px solid #8B1A1A;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .news-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .news-item h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .news-date {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        /* 侧边栏样式 */
+        .sidebar-widget {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-widget:last-child {
+            margin-bottom: 0;
+        }
+        
+        .member-list {
+            list-style: none;
+        }
+        
+        .member-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .member-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* 研究领域网格 */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .research-item {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid #8B1A1A;
+        }
+        
+        .research-item h3 {
+            margin-bottom: 10px;
+            color: #8B1A1A;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #8B1A1A;
+        }
+        
+        .footer-section p, .footer-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <!-- 占位图片，实际使用时替换为学会logo -->
+                   
+                    <div class="logo-text">
+                        <h1>中国明史学会</h1>
+                        <p>Chinese Association of Ming History</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="明朝.html">首页</a></li>
+                      
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 横幅区域 -->
+    <div class="banner">
+        <div class="banner-content">
+            <h2>深入研究明代历史 弘扬中华优秀传统文化</h2>
+            <p>中国明史学会成立于1989年，是经民政部批准注册的全国性学术团体，致力于推动明代历史研究，促进学术交流。</p>
+        </div>
+    </div>
+
+    <!-- 主要内容区 -->
+    <div class="container">
+        <div class="main-content">
+            <!-- 左侧主要内容 -->
+            <div class="left-content">
+                <!-- 学会简介 -->
+                <section id="about">
+                    <h2>学会简介</h2>
+                    <p>中国明史学会成立于1989年，是由全国明史研究工作者自愿组成的全国性、学术性、非营利性社会组织。学会接受业务主管单位中国社会科学院和社团登记管理机关民政部的业务指导和监督管理。</p>
+                    <p>学会宗旨是团结和组织全国明史研究工作者，开展明代历史研究，促进学术交流，提高研究水平，为繁荣发展我国哲学社会科学事业服务。</p>
+                    <p>学会主要业务包括：组织开展明史学术研究活动；举办国内和国际明史学术会议；编辑出版明史研究书刊；开展明史知识普及工作；加强与国内外相关学术团体的交流与合作。</p>
+                </section>
+
+                <!-- 学会动态 -->
+                <section id="news">
+                    <h2>学会动态</h2>
+                    <div class="news-item">
+                        <h3>第二十届明史国际学术研讨会成功举办</h3>
+                        <div class="news-date">2023年8月15日</div>
+                        <p>2023年8月10日至13日，第二十届明史国际学术研讨会在南京成功举办。来自海内外的200余位专家学者围绕"明代社会变迁与全球视野"主题展开深入研讨。</p>
+                    </div>
+                    <div class="news-item">
+                        <h3>《明史研究》2023年第2期出版</h3>
+                        <div class="news-date">2023年6月20日</div>
+                        <p>《明史研究》2023年第2期已于近日出版，本期收录了12篇学术论文，内容涵盖明代政治制度、社会经济、文化思想等多个研究领域。</p>
+                    </div>
+                    <div class="news-item">
+                        <h3>明史学会青年学者论坛征文启事</h3>
+                        <div class="news-date">2023年5月10日</div>
+                        <p>为促进青年明史研究人才的成长，中国明史学会拟于2023年10月举办第五届青年学者论坛，现面向全国高校及科研机构40岁以下青年学者征集论文。</p>
+                    </div>
+                </section>
+
+                <!-- 学术研究 -->
+                <section id="research">
+                    <h2>学术研究</h2>
+                    <p>中国明史学会致力于推动明代历史的全面深入研究，主要研究领域包括：</p>
+                    <div class="research-grid">
+                        <div class="research-item">
+                            <h3>政治制度史</h3>
+                            <p>研究明代中央与地方政治制度、官僚体系、法律制度等。</p>
+                        </div>
+                        <div class="research-item">
+                            <h3>社会经济史</h3>
+                            <p>研究明代农业、手工业、商业、财政、赋役制度等。</p>
+                        </div>
+                        <div class="research-item">
+                            <h3>思想文化史</h3>
+                            <p>研究明代儒学发展、宗教思想、文学艺术、教育科举等。</p>
+                        </div>
+                        <div class="research-item">
+                            <h3>社会史</h3>
+                            <p>研究明代社会结构、宗族制度、民间信仰、日常生活等。</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 右侧边栏 -->
+            <div class="sidebar">
+                <!-- 组织机构 -->
+                <section id="members">
+                    <h2>组织机构</h2>
+                    <div class="sidebar-widget">
+                        <h3>学会领导</h3>
+                        <ul class="member-list">
+                            <li><strong>会长：</strong>张明华 教授</li>
+                            <li><strong>副会长：</strong>李文化 教授</li>
+                            <li><strong>副会长：</strong>王建新 研究员</li>
+                            <li><strong>秘书长：</strong>刘学明 副教授</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h3>常务理事</h3>
+                        <ul class="member-list">
+                            <li>陈晓东 教授</li>
+                            <li>赵立人 研究员</li>
+                            <li>孙文华 教授</li>
+                            <li>周国平 研究员</li>
+                            <li>吴天明 教授</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 出版物 -->
+                <section>
+                    <h2>学会出版物</h2>
+                    <div class="sidebar-widget">
+                        <ul class="member-list">
+                            <li>《明史研究》（年刊）</li>
+                            <li>《明史研究论丛》</li>
+                            <li>《明代名人传记丛书》</li>
+                            <li>《明史资料丛刊》</li>
+                            <li>《国际明史研讨会论文集》</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 会员申请 -->
+                <section>
+                    <h2>加入我们</h2>
+                    <p>欢迎从事明史研究或对明史有浓厚兴趣的学者、研究生及相关工作者加入中国明史学会。</p>
+                    <p>申请者需填写会员申请表，由两名会员推荐，经学会常务理事会审议通过。</p>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>地址：北京市东城区建国门内大街5号中国社会科学院历史研究所</p>
+                    <p>邮编：100732</p>
+                    <p>电话：010-8519xxxx</p>
+                    <p>邮箱：minghistory@cass.org.cn</p>
+                </div>
+              
+             
+            </div>
+            <div class="copyright">
+                <p>版权所有 &copy; 2023 中国明史学会 京ICP备xxxxxxxx号</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

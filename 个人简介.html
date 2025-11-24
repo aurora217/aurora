@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简介 - 河北科技大学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1a6fc3 0%, #2c3e50 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .school-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .title {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .university {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .content-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .main-content {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        h2 {
+            color: #1a6fc3;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2 i {
+            font-size: 1.5rem;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .skill {
+            background: linear-gradient(135deg, #1a6fc3 0%, #2c3e50 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .education-item {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 3px solid #1a6fc3;
+        }
+        
+        .education-item h3 {
+            color: #1a6fc3;
+            margin-bottom: 5px;
+        }
+        
+        .education-item .date {
+            color: #777;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+ .video-container {
+            position: relative;
+            width: 100%;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .video-container video {
+            width: 100%;
+            display: block;
+            border: none;
+        }
+        
+        .video-placeholder {
+            background: linear-gradient(135deg, #1a6fc3 0%, #2c3e50 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 15px;
+        }
+        
+        .video-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .hobbies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .hobby {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+            min-width: 100px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .hobby i {
+            font-size: 2rem;
+            color: #1a6fc3;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: #1a6fc3;
+            width: 30px;
+        }
+        
+        .course-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .course-table th, .course-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .course-table th {
+            background-color: #f8f9fa;
+            color: #1a6fc3;
+        }
+        
+        .course-table tr:hover {
+            background-color: #f1f7fd;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            color: #777;
+            border-top: 1px solid #ddd;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .content-section {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .school-badge {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin: 0 auto 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="school-badge">
+                <i class="fas fa-university"></i>
+            </div>
+			 <img src="微信图片_20250908222951.jpg" alt="个人照片" class="profile-img">
+            <h1>崔珈硕</h1>
+            <p class="title">大数据管理与应用专业 · 大二学生</p>
+            <div class="university">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>河北科技大学</span>
+            </div>
+        </header>
+        
+        <div class="content-section">
+            <div class="main-content">
+                <section class="card">
+                    <h2><i class="fas fa-user"></i> 关于我</h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>您好！我是崔珈硕，河北科技大学大数据管理与应用专业的大二学生。我对数据分析、机器学习和大数据技术有浓厚的兴趣，喜欢探索数据背后的故事和价值。</p>
+                            <p>在校期间，我不仅专注于学术课程，还积极参与项目实践和校园活动。</p>
+                            <p>我热爱学习新技术，目前正在深入学习Python数据分析和Hadoop生态系统，希望将来能成为一名优秀的数据工程师。</p>
+                        </div>
+                        <div class="about-image">
+							<img src="微信图片_20250912142450.jpg" alt="校园生活">
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="card">
+                    <h2><i class="fas fa-graduation-cap"></i> 教育背景</h2>
+                    <div class="education-item">
+                        <h3>河北科技大学</h3>
+                        <p class="date">2024年9月 - 至今</p>
+                        <p>大数据管理与应用专业 · 本科</p>
+                        <p>GPA: 3.4/4.0</p>
+                    </div>
+                    
+                    <div class="education-item">
+                        <h3>主要课程</h3>
+                        <p>数据结构与算法、数据库原理、Python程序设计、大数据技术基础、数据挖掘、机器学习、统计学、分布式计算</p>
+                    </div>
+                </section>
+                
+                <section class="card">
+                    <h2><i class="fas fa-code"></i> 技能专长</h2>
+                    <div class="skills">
+                        <span class="skill">Python</span>
+                        <span class="skill">MySQL</span>
+                        <span class="skill">Hadoop</span>
+                        <span class="skill">Spark</span>
+                        <span class="skill">数据可视化</span>
+                        <span class="skill">机器学习</span>
+                        <span class="skill">Java</span>
+                        <span class="skill">Linux</span>
+                        <span class="skill">Git</span>
+                    </div>
+                </section>
+                
+                <section class="card">
+                    <h2><i class="fas fa-film"></i> 视频</h2>
+                   
+                    
+                    <!-- 视频容器 - 使用本地视频 -->
+                    <div class="video-container">
+                        <video controls poster="">
+                            <!-- 实际使用时，请将src属性值替换为您的视频文件路径 -->
+                            <source src="8ea809f87e74f322aaaccfbb8bc7c2a7.mp4" type="video/mp4">
+                            
+                        </video>
+                    </div>
+                    
+                    <p class="video-note" style="margin-top: 15px; font-style: italic; color: #777;">
+                       
+                    </p>
+					
+                </section>
+          </div>
+            
+            <div class="sidebar">
+                
+                
+                <section class="card">
+                    <h2><i class="fas fa-book"></i> 专业课程</h2>
+                    <table class="course-table">
+                        <thead>
+                            <tr>
+                                <th>课程名称</th>
+                                <th>成绩</th>
+                                <th>学期</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Python程序设计</td>
+                                <td>95</td>
+                                <td>大一上</td>
+                            </tr>
+							 <tr>
+                                <td>Mysql</td>
+                                <td>97</td>
+                                <td>大一上</td>
+                            </tr>
+                            <tr>
+                                <td>高数</td>
+                                <td>90</td>
+                                <td>大一上</td>
+                            </tr>
+                            <tr>
+                                <td>数据库原理</td>
+                                <td>90</td>
+                                <td>大一下</td>
+                            </tr>
+                            <tr>
+                                <td>java</td>
+                                <td>96</td>
+                                <td>大一下</td>
+                            </tr>
+                            <tr>
+                                <td>高数二</td>
+                                <td>89</td>
+                                <td>大一下</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                
+                <section class="card">
+                    <h2><i class="fas fa-address-card"></i> 联系方式</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>1550996346@qq.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>156****0770</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>河北省石家庄市</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+      </div>
+        
+        <footer>
+            <p>© 2025 崔珈硕 - 河北科技大学大数据管理与应用专业</p>
+            <p>本页面仅用于个人展示，所有内容均为示例</p>
+        </footer>
+</div>
+	 <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('video');
+            
+            
+            if(video) {
+                video.addEventListener('ended', function() {
+                    console.log('视频播放结束');
+                });
+            }
+            
+            
+            const videoNote = document.querySelector('.video-note');
+            if(videoNote) {
+                setTimeout(function() {
+                    videoNote.style.opacity = '0.7';
+                    videoNote.style.transition = 'opacity 0.5s';
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大明风华 - 明朝题材影视作品集</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f2e9;
+            color: #333;
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.05"><rect fill="%23b8860b" width="100" height="100"/><path d="M0 0L100 100M100 0L0 100" stroke="%238B4513" stroke-width="1"/></svg>');
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(to right, #8B4513, #A0522D);
+            color: #f5f2e9;
+            padding: 30px 0;
+            text-align: center;
+            border-bottom: 5px solid #b8860b;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 3px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* 导航样式 */
+        nav {
+            background-color: #8B4513;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 15px;
+        }
+        
+        nav a {
+            color: #f5f2e9;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: #b8860b;
+            transform: translateY(-2px);
+        }
+        
+        /* 主要内容区 */
+        main {
+            padding: 40px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            font-size: 2.2rem;
+            color: #8B4513;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: #b8860b;
+            margin: 10px auto;
+        }
+        
+        /* 影视作品网格 */
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .movie-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .movie-poster {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .movie-info {
+            padding: 20px;
+        }
+        
+        .movie-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #8B4513;
+            border-left: 4px solid #b8860b;
+            padding-left: 10px;
+        }
+        
+        .movie-year {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .movie-desc {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        /* 特色作品区 */
+        .featured {
+            background-color: #f0e6d3;
+            padding: 50px 0;
+            margin: 50px 0;
+            border-top: 3px solid #b8860b;
+            border-bottom: 3px solid #b8860b;
+        }
+        
+        .featured-movie {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .featured-poster {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+        
+        .featured-title {
+            font-size: 2rem;
+            color: #8B4513;
+            margin-bottom: 15px;
+        }
+        
+        .featured-desc {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: #333;
+            color: #f5f2e9;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #b8860b;
+        }
+        
+        .footer-info {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 20px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 5px 0;
+            }
+            
+            .movies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header>
+        <div class="container">
+            <h1>大明风华</h1>
+            <p>探索明朝历史背景下的经典影视作品，感受大明王朝的辉煌与沧桑</p>
+        </div>
+    </header>
+	<nav>
+                       <div class="container nav-container">
+                       <ul class="nav-list">
+                          <li><a href="明朝.html">首页</a></li>
+                
+                           </ul>
+                            </div>
+                </nav>
+    
+    
+    <!-- 导航区域 -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#tv-series">电视剧集</a></li>
+                <li><a href="#movies">电影作品</a></li>
+                <li><a href="#documentaries">历史纪录片</a></li>
+                <li><a href="#featured">本月推荐</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 主要内容区域 -->
+    <main class="container">
+        <!-- 电视剧集部分 -->
+        <section id="tv-series">
+            <h2 class="section-title">经典电视剧集</h2>
+            <div class="movies-grid">
+                <!-- 电视剧卡片1 -->
+                <div class="movie-card">
+                    <img src="R-C (2).jpg" alt="大明王朝1566" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">大明王朝1566</h3>
+                        <p class="movie-year">2007年 · 46集</p>
+                        <p class="movie-desc">该剧讲述的是嘉靖与海瑞的故事。嘉靖三十九年，贪墨横行、民不聊生。奸臣严嵩党羽密布、权倾朝野，清官海瑞不惧强权，敢于向腐朽封建的皇权发起挑战。</p>
+                    </div>
+                </div>
+                
+                <!-- 电视剧卡片2 -->
+                <div class="movie-card">
+                    <img src="R-C (3).jpg" alt="大明宫词" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">大明宫词</h3>
+                        <p class="movie-year">2000年 · 40集</p>
+                        <p class="movie-desc">该剧以武则天与太平公主这一对母女一生权力和情感的矛盾争斗为主线，讲述了一个充满传奇色彩又饱含人生力度的故事。</p>
+                    </div>
+                </div>
+                
+                <!-- 电视剧卡片3 -->
+                <div class="movie-card">
+                    <img src="2020021825242_tiXwV.jpeg" alt="锦衣之下" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">锦衣之下</h3>
+                        <p class="movie-year">2019年 · 55集</p>
+                        <p class="movie-desc">明朝嘉靖末年，锦衣卫陆绎奉命调查扬州修河款失踪案，得到六扇门女捕快袁今夏协助，二人结为甜蜜冤家，却意外卷入重重阴谋的故事。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 电影作品部分 -->
+        <section id="movies">
+            <h2 class="section-title">经典电影作品</h2>
+            <div class="movies-grid">
+                <!-- 电影卡片1 -->
+                <div class="movie-card">
+                    <img src="v2-14e62c2429ea3dcb9b90aaafe7279f26_qhd.jpg" alt="绣春刀" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">绣春刀</h3>
+                        <p class="movie-year">2014年 · 动作/武侠</p>
+                        <p class="movie-desc">明崇祯皇帝登基后，权倾天下的大太监魏忠贤被弹劾辞官，锦衣卫卢剑星、沈炼、靳一川三人奉命追捕阉党，却卷入一场宫廷阴谋。</p>
+                    </div>
+                </div>
+                
+                <!-- 电影卡片2 -->
+                <div class="movie-card">
+                    <img src="R-C.png" alt="新龙门客栈" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">新龙门客栈</h3>
+                        <p class="movie-year">1992年 · 动作/武侠</p>
+                        <p class="movie-desc">明朝中叶，宦官专权，东厂曹少钦假造圣旨杀害忠良杨宇轩，侠女邱莫言、江湖侠客周淮安等人联手在龙门客栈与东厂展开对决。</p>
+                    </div>
+                </div>
+                
+                <!-- 电影卡片3 -->
+                <div class="movie-card">
+                    <img src="R-C (4).jpg" alt="柳如是" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">柳如是</h3>
+                        <p class="movie-year">2012年 · 传记/历史</p>
+                        <p class="movie-desc">电影讲述了明末清初"秦淮八艳"之首柳如是与文人钱谦益之间超越世俗的爱情故事，展现了明末文人风骨和家国情怀。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 特色推荐部分 -->
+        <section class="featured" id="featured">
+            <div class="container">
+                <h2 class="section-title">本月推荐</h2>
+                <div class="featured-movie">
+                    <img src="R-C (5).jpg" alt="大明风华" class="featured-poster">
+                    <h3 class="featured-title">大明风华</h3>
+                    <p class="featured-desc">该剧改编自莲静竹衣的小说《六朝纪事》，讲述了明朝初年，国家开创盛世，孙若微历经五帝六朝的故事。通过女主角孙若微的经历，展现了明朝前期永乐盛世至仁宣之治的壮阔历史。</p>
+                    <p class="featured-desc">主演：汤唯、朱亚文、邓家佳、乔振宇</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 纪录片部分 -->
+        <section id="documentaries">
+            <h2 class="section-title">历史纪录片</h2>
+            <div class="movies-grid">
+                <!-- 纪录片卡片1 -->
+                <div class="movie-card">
+                    <img src="R-C (6).jpg" alt="1405郑和下西洋" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">1405郑和下西洋</h3>
+                        <p class="movie-year">2005年 · 纪录片</p>
+                        <p class="movie-desc">该片以郑和下西洋这一伟大历史事件为主题，通过大量实景拍摄和专家访谈，再现了600年前这一世界航海史上的壮举。</p>
+                    </div>
+                </div>
+                
+                <!-- 纪录片卡片2 -->
+                <div class="movie-card">
+                    <img src="s6172559d23bf9.jpg" alt="紫禁城" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">紫禁城</h3>
+                        <p class="movie-year">2021年 · 纪录片</p>
+                        <p class="movie-desc">该片以紫禁城为主题，以编年体的方式，用12个篇章在600年历史中选取12个历史节点，串联起明朝迁都北京后的历史脉络。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- 页脚区域 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">大明风华</div>
+                <p>探索明朝历史，感受中华文化</p>
+                <p class="footer-info">本网站仅用于展示明朝题材影视作品信息，不提供观看或下载服务</p>
+                <p class="footer-info">© 2023 大明风华影视作品集</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>明朝洪武时期 - 历史资料</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Serif SC', 'Microsoft YaHei', serif;
+        }
+        
+        body {
+            background-color: #f8f3e9;
+            color: #333;
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill-opacity="0.05" fill="%23000" width="100" height="100"/></svg>');
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #8e2d2d 0%, #5c1a1a 100%);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 8px solid #d4af37;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #f8d568;
+        }
+        
+        .date-range {
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+        }
+        
+        nav {
+            background-color: #5c1a1a;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-list li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            display: block;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-list li a:hover {
+            background: #8e2d2d;
+        }
+        
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #e0d5c5;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #5c1a1a;
+            font-size: 2.5rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #d4af37;
+            margin: 0.5rem auto;
+        }
+        
+        .intro-text {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            text-align: center;
+            line-height: 1.8;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .timeline:before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: #d4af37;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .timeline-content {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            position: relative;
+            border-top: 5px solid #8e2d2d;
+        }
+        
+        .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 80px;
+            height: 80px;
+            background: #8e2d2d;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            z-index: 1;
+            left: 50%;
+            margin-left: -40px;
+            border: 4px solid #d4af37;
+        }
+        
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .achievement-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background: #8e2d2d;
+            color: #fff;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card-body ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .resource-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .resource-icon {
+            font-size: 3rem;
+            color: #8e2d2d;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #8e2d2d;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #5c1a1a;
+        }
+        
+        footer {
+            background: #2c0c0c;
+            color: #fff;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-list {
+                flex-direction: column;
+            }
+            
+            .timeline:before {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: 80%;
+                margin-left: 80px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                justify-content: flex-start;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 80px;
+            }
+            
+            .timeline-year {
+                left: 30px;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1>明朝洪武时期</h1>
+            <div class="subtitle">大明王朝的建立与巩固</div>
+            <div class="date-range">1368年 - 1398年</div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container nav-container">
+            <ul class="nav-list">
+                <li><a href="明朝.html">首页</a></li>
+                
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section id="introduction" class="section">
+            <h2 class="section-title">洪武时期简介</h2>
+            <p class="intro-text">
+                洪武（1368年-1398年）是明太祖朱元璋的年号，是明朝的第一个年号。洪武时期标志着元朝的结束和明朝的建立，是中国历史上一个重要的转折点。朱元璋从贫苦农民成长为帝国皇帝，建立了持续近三百年的明王朝。
+            </p>
+            <p class="intro-text">
+                洪武时期以加强中央集权、恢复农业生产、整顿吏治和重建社会秩序为主要特点。朱元璋采取了一系列措施巩固统治，包括废除丞相制度、建立锦衣卫、推行屯田政策、编制赋役黄册和鱼鳞图册等。
+            </p>
+        </section>
+        
+        <section id="timeline" class="section">
+            <h2 class="section-title">洪武时期大事记</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>明朝建立</h3>
+                        <p>1368年正月，朱元璋在应天府（今南京）称帝，国号大明，年号洪武，建立了明朝。</p>
+                    </div>
+                    <div class="timeline-year">1368</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>元朝灭亡</h3>
+                        <p>1368年闰七月，明军攻占大都（今北京），元顺帝北逃，元朝在全国范围的统治结束。</p>
+                    </div>
+                    <div class="timeline-year">1368</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>颁布《大明律》</h3>
+                        <p>1373年，《大明律》正式颁布，这是明代的基本法典，体现了朱元璋"重典治世"的思想。</p>
+                    </div>
+                    <div class="timeline-year">1373</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>废中书省</h3>
+                        <p>1380年，朱元璋以谋反罪诛杀丞相胡惟庸，废除中书省和丞相制度，大大加强了皇权。</p>
+                    </div>
+                    <div class="timeline-year">1380</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>空印案</h3>
+                        <p>1382年，因地方官员使用盖有官印的空白文书事，朱元璋严厉惩处相关官员，史称"空印案"。</p>
+                    </div>
+                    <div class="timeline-year">1382</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>郭桓案</h3>
+                        <p>1385年，户部侍郎郭桓等人贪污官粮，被揭发后，朱元璋严惩涉案人员数万人。</p>
+                    </div>
+                    <div class="timeline-year">1385</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>蓝玉案</h3>
+                        <p>1393年，大将军蓝玉被控谋反，株连被杀者达一万五千余人，是为"蓝玉案"。</p>
+                    </div>
+                    <div class="timeline-year">1393</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="achievements" class="section">
+            <h2 class="section-title">主要政策与成就</h2>
+            <div class="achievements">
+                <div class="achievement-card">
+                    <div class="card-header">政治制度</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>废除中书省和丞相制度</li>
+                            <li>设立六部直接对皇帝负责</li>
+                            <li>建立都察院和锦衣卫</li>
+                            <li>实行分封制，将诸子分封各地为王</li>
+                            <li>制订《大明律》和《大诰》</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="card-header">经济政策</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>推行屯田制，军屯和民屯并举</li>
+                            <li>编制赋役黄册和鱼鳞图册</li>
+                            <li>兴修水利，鼓励垦荒</li>
+                            <li>减轻赋税，恢复农业生产</li>
+                            <li>发行"大明宝钞"，统一货币</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="card-header">军事制度</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>创立卫所制度</li>
+                            <li>实行世兵制，军户世代为兵</li>
+                            <li>北伐蒙古，肃清元朝残余势力</li>
+                            <li>修建明长城，加强北方防御</li>
+                            <li>沿海设立卫所，防御倭寇</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="card-header">文化教育</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>恢复科举制度，定期举行乡试、会试</li>
+                            <li>设立国子监，培养人才</li>
+                            <li>推崇理学，确立程朱理学的正统地位</li>
+                            <li>组织编纂《元史》等大型史书</li>
+                            <li>严格思想控制，文字狱兴起</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="resources" class="section">
+            <h2 class="section-title">相关资料</h2>
+            <div class="resources">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>历史文献</h3>
+                    <p>《明史·太祖本纪》、《明实录·太祖实录》、《大明会典》、《明史纪事本末》</p>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3>文化遗址</h3>
+                    <p>南京明故宫遗址、明孝陵、明中都城遗址、明长城洪武时期段、各地明代卫所遗址</p>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>研究机构</h3>
+                    <p>中国明史学会、中国社会科学院历史研究所、北京大学明清研究中心、南京大学明史研究室</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <p>© 2023 明朝历史研究 | 洪武时期资料网页</p>
+            <p>本网站仅用于教育目的，内容来源于公开历史资料</p>
+        </div>
+    </footer>
+</body>
+</html>

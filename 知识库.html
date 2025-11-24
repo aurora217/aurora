@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>明朝历史知识库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SimSun', serif;
+        }
+        
+        body {
+            background-color: #f8f3e9;
+            color: #333;
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill-opacity="0.05" fill="%23000000" width="50" height="50" x="0" y="0" /><rect fill-opacity="0.05" fill="%23000000" width="50" height="50" x="50" y="50" /></svg>');
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 3px solid #8c2318;
+            margin-bottom: 40px;
+            background: linear-gradient(to right, #8c2318, #bf3f27, #8c2318);
+            color: #f8f3e9;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            letter-spacing: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        h2 {
+            color: #8c2318;
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #bf3f27;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: #594433;
+            margin: 20px 0 10px;
+            font-size: 1.4rem;
+        }
+        
+        .intro {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background-color: #594433;
+            color: #f8f3e9;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.4rem;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #8c2318;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #8c2318;
+        }
+        
+        .emperor-list {
+            list-style-type: none;
+        }
+        
+        .emperor-list li {
+            padding: 12px;
+            margin-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-left: 4px solid #bf3f27;
+            border-radius: 4px;
+        }
+        
+        .emperor-name {
+            font-weight: bold;
+            color: #594433;
+        }
+        
+        .emperor-reign {
+            font-style: italic;
+            color: #7a7a7a;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 2px solid #8c2318;
+            color: #594433;
+            font-size: 0.9rem;
+        }
+        
+        .quote {
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(89, 68, 51, 0.1);
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #bf3f27;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>明朝历史知识库</h1>
+            <p>1368年 - 1644年</p>
+        </header>
+		 <nav>
+                       <div class="container nav-container">
+                       <ul class="nav-list">
+                          <li><a href="明朝.html">首页</a></li>
+                
+                           </ul>
+                            </div>
+                </nav>
+        
+        <div class="intro">
+            <p>明朝是中国历史上最后一个由汉族建立的大一统王朝，共传十六帝，享国二百七十六年。明代无汉之外戚、唐之藩镇、宋之岁币，天子守国门，君王死社稷。</p>
+        </div>
+        
+        <h2>明朝皇帝世系</h2>
+        <ul class="emperor-list">
+            <li><span class="emperor-name">明太祖朱元璋</span> - <span class="emperor-reign">年号洪武（1368-1398）</span> - 明朝开国皇帝</li>
+            <li><span class="emperor-name">明惠帝朱允炆</span> - <span class="emperor-reign">年号建文（1398-1402）</span> - 朱元璋之孙</li>
+            <li><span class="emperor-name">明成祖朱棣</span> - <span class="emperor-reign">年号永乐（1402-1424）</span> - 迁都北京，编纂《永乐大典》</li>
+            <li><span class="emperor-name">明仁宗朱高炽</span> - <span class="emperor-reign">年号洪熙（1424-1425）</span> - 在位短暂但为仁宣之治奠定基础</li>
+            <li><span class="emperor-name">明宣宗朱瞻基</span> - <span class="emperor-reign">年号宣德（1425-1435）</span> - 仁宣之治达到顶峰</li>
+            <li><span class="emperor-name">明英宗朱祁镇</span> - <span class="emperor-reign">年号正统（1435-1449）天顺（1457-1464）</span> - 经历土木堡之变</li>
+            <li><span class="emperor-name">明代宗朱祁钰</span> - <span class="emperor-reign">年号景泰（1449-1457）</span> - 英宗被俘后继位</li>
+            <li><span class="emperor-name">明宪宗朱见深</span> - <span class="emperor-reign">年号成化（1464-1487）</span> - 设立西厂</li>
+            <li><span class="emperor-name">明孝宗朱祐樘</span> - <span class="emperor-reign">年号弘治（1487-1505）</span> - 开创"弘治中兴"</li>
+            <li><span class="emperor-name">明武宗朱厚照</span> - <span class="emperor-reign">年号正德（1505-1521）</span> - 荒淫无度，喜好玩乐</li>
+            <li><span class="emperor-name">明世宗朱厚熜</span> - <span class="emperor-reign">年号嘉靖（1521-1566）</span> - 大礼议事件，长期不上朝</li>
+            <li><span class="emperor-name">明穆宗朱载坖</span> - <span class="emperor-reign">年号隆庆（1566-1572）</span> - 隆庆开关，解除海禁</li>
+            <li><span class="emperor-name">明神宗朱翊钧</span> - <span class="emperor-reign">年号万历（1572-1620）</span> - 万历中兴，后期荒于政事</li>
+            <li><span class="emperor-name">明光宗朱常洛</span> - <span class="emperor-reign">年号泰昌（1620）</span> - 在位仅一个月</li>
+            <li><span class="emperor-name">明熹宗朱由校</span> - <span class="emperor-reign">年号天启（1620-1627）</span> - 宠信魏忠贤，东林党争</li>
+            <li><span class="emperor-name">明思宗朱由检</span> - <span class="emperor-reign">年号崇祯（1627-1644）</span> - 明朝末代皇帝，自缢于煤山</li>
+        </ul>
+        
+        <h2>明朝重大历史事件</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1368年</div>
+                    <h3>明朝建立</h3>
+                    <p>朱元璋在应天府（今南京）称帝，国号大明，年号洪武，元朝北逃，明朝开始。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1380年</div>
+                    <h3>胡惟庸案</h3>
+                    <p>朱元璋以"谋不轨"罪诛宰相胡惟庸九族，同时杀御史大夫陈宁、中丞涂节等数人。之后废除中书省，不再设宰相。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1399-1402年</div>
+                    <h3>靖难之役</h3>
+                    <p>燕王朱棣起兵反抗建文帝，最终攻占南京，即位为明成祖。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1405-1433年</div>
+                    <h3>郑和下西洋</h3>
+                    <p>明成祖派郑和七次下西洋，最远到达东非沿岸，创造了航海史上的壮举。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1449年</div>
+                    <h3>土木堡之变</h3>
+                    <p>明英宗亲征瓦剌，兵败被俘，明朝国力由盛转衰。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1560年代</div>
+                    <h3>戚继光抗倭</h3>
+                    <p>戚继光在东南沿海抗击倭寇，保障了沿海地区的安全。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1583-1619年</div>
+                    <h3>万历三大征</h3>
+                    <p>明神宗在位期间，先后在西北、西南边疆和朝鲜展开三次大规模军事行动。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1618-1644年</div>
+                    <h3>明末农民起义</h3>
+                    <p>李自成、张献忠等领导农民起义，最终李自成攻入北京，明朝灭亡。</p>
+                </div>
+            </div>
+        </div>
+        
+        <h2>明朝文化与科技</h2>
+        <div class="grid-container">
+            <div class="card">
+                <div class="card-header">文学</div>
+                <div class="card-content">
+                    <p>四大奇书：《三国演义》、《水浒传》、《西游记》、《金瓶梅》</p>
+                    <p>汤显祖《牡丹亭》、冯梦龙"三言"、凌濛初"二拍"</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">艺术</div>
+                <div class="card-content">
+                    <p>吴门四家：沈周、文徵明、唐寅、仇英</p>
+                    <p>青花瓷达到艺术高峰，景泰蓝工艺成熟</p>
+                    <p>紫禁城建成，代表中国古代建筑最高水平</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">科技</div>
+                <div class="card-content">
+                    <p>李时珍《本草纲目》</p>
+                    <p>徐光启《农政全书》</p>
+                    <p>宋应星《天工开物》</p>
+                    <p>徐霞客《徐霞客游记》</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="quote">
+            "山河奄有中华地，日月重开大宋天" - 朱元璋北伐檄文
+        </div>
+        
+        <h2>明朝政治制度</h2>
+        <div class="card">
+            <div class="card-content">
+                <p>明朝初年，中央设中书省，左右丞相。洪武十三年，朱元璋废除中书省，罢丞相不设，由皇帝直接管理六部。后设内阁作为顾问机构，内阁大学士权力逐渐增大。</p>
+                <p>设立厂卫特务机构：锦衣卫、东厂、西厂，加强中央集权和皇帝专制。</p>
+                <p>科举制度完善，形成"非进士不入翰林，非翰林不入内阁"的现象。</p>
+                <p>实行卫所制，军队自给自足，军户世袭。</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 明朝历史知识库 | 本页面内容仅供参考学习</p>
+            <p>明朝：1368年1月23日－1644年4月25日</p>
+        </footer>
+    </div>
+</body>
+</html>

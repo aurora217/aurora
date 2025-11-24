@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>郑和下西洋 - 中国古代航海壮举</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f2e9;
+            color: #333;
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f5f2e9"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23e8e0d1" stroke-width="0.5"/></svg>');
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #8b0000, #b22222);
+            color: #ffd700;
+            padding: 30px 0;
+            text-align: center;
+            border-bottom: 5px solid #ffd700;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #ffeb99;
+        }
+        
+        .nav-bar {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 20px;
+        }
+        
+        .nav-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background-color: #34495e;
+            color: #ffd700;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400"><rect width="1200" height="400" fill="%231e3a5f"/><path d="M0,200 Q300,100 600,200 T1200,200" stroke="%23336699" stroke-width="2" fill="none"/><path d="M0,250 Q300,150 600,250 T1200,250" stroke="%23336699" stroke-width="2" fill="none"/><circle cx="200" cy="180" r="8" fill="%23ffd700"/><circle cx="400" cy="220" r="8" fill="%23ffd700"/><circle cx="800" cy="190" r="8" fill="%23ffd700"/><circle cx="1000" cy="240" r="8" fill="%23ffd700"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ffd700;
+            color: #8b0000;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid #ffd700;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: #ffd700;
+        }
+        
+        .section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #8b0000;
+            position: relative;
+            font-size: 2.2rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #ffd700;
+            margin: 10px auto;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-img {
+            height: 200px;
+            background-color: #2c3e50;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card h3 {
+            color: #8b0000;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #8b0000;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .timeline-content:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #8b0000;
+            border: 4px solid #ffd700;
+            border-radius: 50%;
+            top: 20px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content:after {
+            right: -50px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content:after {
+            left: -50px;
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: #8b0000;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .map-container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+        
+        .map-placeholder {
+            height: 400px;
+            background: #e8e0d1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .footer-links li {
+            margin: 0 15px;
+        }
+        
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #ffd700;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .timeline:before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                left: 0 !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content:after,
+            .timeline-item:nth-child(even) .timeline-content:after {
+                left: -50px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>郑和下西洋</h1>
+            <p class="subtitle">十五世纪中国航海史上的伟大壮举</p>
+        </div>
+    </header>
+	            
+    <nav class="nav-bar">
+        <div class="container">
+            <ul class="nav-links">
+				<li><a href="明朝.html">首页</a></li>
+                <li><a href="#overview">历史概述</a></li>
+                <li><a href="#voyages">七次航行</a></li>
+                <li><a href="#ships">宝船舰队</a></li>
+                <li><a href="#legacy">历史影响</a></li>
+                <li><a href="#gallery">航海路线</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="container">
+            <h2>探索中国古代航海传奇</h2>
+            <p>在15世纪初的明朝，郑和率领当时世界上最庞大的船队，七次远航西洋，访问了30多个国家和地区，创造了世界航海史上的奇迹。</p>
+            <a href="#overview" class="btn">了解更多</a>
+        </div>
+    </section>
+    
+    <section id="overview" class="section">
+        <div class="container">
+            <h2 class="section-title">历史概述</h2>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('5ec4c520d7f8a70001faf015.jpg') ;"></div>
+                    <div class="card-content">
+                        <h3>背景与目的</h3>
+                        <p>郑和下西洋发生在明朝永乐年间（1405-1433年），是明成祖朱棣为了宣扬国威、发展贸易和寻找建文帝而组织的远洋航行。这一系列航行比哥伦布发现美洲早87年，船队规模远超同期欧洲国家。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img" style="background-image: url('97715504f72d44e68fd0fe26917241d8.webp')"></div>
+                    <div class="card-content">
+                        <h3>航行规模</h3>
+                        <p>郑和船队由200多艘海船组成，其中包括60多艘大型"宝船"。船员人数达到27000多人，包括水手、士兵、工匠、医生、翻译等各类专业人员，是当时世界上规模最大的航海船队。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img" style="background-image: url('R-C (7).jpg');"></div>
+                    <div class="card-content">
+                        <h3>航行范围</h3>
+                        <p>郑和船队最远到达非洲东海岸和红海沿岸，访问了东南亚、南亚、阿拉伯半岛和东非的30多个国家和地区，促进了中国与这些地区的文化交流和贸易往来。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="voyages" class="section" style="background-color: : #f9f7f2;">
+        <div class="container">
+            <h2 class="section-title">七次航行历程</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1405-1407年</div>
+                        <h3>第一次下西洋</h3>
+                        <p>郑和率领船队从苏州刘家港出发，访问占城、爪哇、苏门答腊、锡兰等地，最远到达印度西海岸的古里。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1407-1409年</div>
+                        <h3>第二次下西洋</h3>
+                        <p>船队再次前往印度洋，访问暹罗、爪哇、柯枝等地，并在锡兰立碑纪念。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1409-1411年</div>
+                        <h3>第三次下西洋</h3>
+                        <p>船队规模进一步扩大，访问了更多印度洋沿岸国家和地区，加强了与当地的政治经济联系。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1413-1415年</div>
+                        <h3>第四次下西洋</h3>
+                        <p>船队首次越过印度洋，到达波斯湾、阿拉伯半岛，并访问了东非的摩加迪沙等地。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1417-1419年</div>
+                        <h3>第五次下西洋</h3>
+                        <p>这次航行主要护送外国使节回国，进一步扩大了明朝在海外的影响力。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1421-1422年</div>
+                        <h3>第六次下西洋</h3>
+                        <p>船队再次远航至非洲东海岸，访问了更多国家和地区，是郑和航行中范围最广的一次。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1430-1433年</div>
+                        <h3>第七次下西洋</h3>
+                        <p>在明宣宗时期进行的最后一次航行，郑和在归国途中病逝于古里，船队由副使王景弘率领返回。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="ships" class="section">
+        <div class="container">
+            <h2 class="section-title">宝船舰队</h2>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('OIP-C (3).webp');"></div>
+                    <div class="card-content">
+                        <h3>宝船</h3>
+                        <p>郑和船队中的旗舰，据记载长44丈（约137米），宽18丈（约56米），是当时世界上最大的木制帆船，可容纳上千人。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img" style="background-image: url('OIP-C (4).webp');"></div>
+                    <div class="card-content">
+                        <h3>马船</h3>
+                        <p>主要用于运输马匹和货物的中型船只，也承担部分人员运输任务，是船队中的重要组成部分。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img" style="background-image: url('OIP-C (5).webp');"></div>
+                    <div class="card-content">
+                        <h3>粮船</h3>
+                        <p>专门用于运输粮食和补给品的船只，保障船队长期航行的后勤需求。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img" style="background-image: url('OIP-C (6).webp');"></div>
+                    <div class="card-content">
+                        <h3>战船</h3>
+                        <p>装备有火炮等武器的军舰，负责船队的护卫和安全，展现明朝的军事力量。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="legacy" class="section" style="background-image: url('');">
+        <div class="container">
+            <h2 class="section-title">历史影响与遗产</h2>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>政治影响</h3>
+                        <p>郑和下西洋建立了明朝与东南亚、南亚、中东和东非国家的朝贡关系，扩大了明朝的国际影响力，形成了以中国为中心的东亚国际秩序。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3>经济交流</h3>
+                        <p>航行促进了中国与海外各国的贸易往来，中国的丝绸、瓷器、茶叶等商品远销海外，同时引进了许多海外珍品和动植物。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3>文化交流</h3>
+                        <p>郑和船队传播了中华文化，同时也带回了异域文化，促进了不同文明之间的交流与融合。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3>航海技术</h3>
+                        <p>郑和航行积累了丰富的航海经验，发展了中国的造船技术和航海技术，留下了《郑和航海图》等重要文献。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="gallery" class="section">
+       
+            <h2 class="section-title">航海路线图</h2>
+            <div class="map-container">
+                <div class="map-placeholder">
+					 <div class="card">
+                    <div class="card-img" style="background-image: url('R-C (8).jpg');"></div>
+                    <div class="card-content">
+                        <h3>航行路线</h3>
+                        <p>郑和船队最远到达非洲东海岸和红海沿岸，访问了东南亚、南亚、阿拉伯半岛和东非的30多个国家和地区，促进了中国与这些地区的文化交流和贸易往来。</p>
+                    </div>
+                    <p>郑和七次下西洋路线示意图</p>
+                </div>
+            </div>
+         </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">郑和下西洋</div>
+                <p>十五世纪中国航海史上的伟大壮举</p>
+                <ul class="footer-links">
+                    <li><a href="#overview">历史概述</a></li>
+                    <li><a href="#voyages">七次航行</a></li>
+                    <li><a href="#ships">宝船舰队</a></li>
+                    <li><a href="#legacy">历史影响</a></li>
+                </ul>
+                <p class="copyright">© 2025 郑和下西洋专题网页 | 纪念中国古代航海壮举</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 导航栏高亮效果
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if(scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

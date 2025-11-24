@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>故宫博物院 - 世界文化遗产</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f8f4e9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(to right, #8B1A1A, #B22222);
+            color: #f8d568;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 70px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .logo-text p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: #f8d568;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* 横幅样式 */
+        .banner {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500"><rect width="1200" height="500" fill="%238B1A1A"/><text x="600" y="250" font-family="Arial" font-size="40" fill="%23f8d568" text-anchor="middle">故宫博物院 - 紫禁城</text></svg>') no-repeat center center;
+            background-size: cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .banner-content h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .banner-content p {
+            font-size: 22px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #f8d568;
+            color: #8B1A1A;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .btn:hover {
+            background-color: #e6c350;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* 主要内容区样式 */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid #8B1A1A;
+        }
+        
+        section h2 {
+            color: #8B1A1A;
+            border-bottom: 2px solid #f8d568;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .intro-item {
+            text-align: center;
+            padding: 20px;
+            background: #f8f4e9;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .intro-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .intro-item h3 {
+            color: #8B1A1A;
+            margin-bottom: 10px;
+        }
+        
+        .intro-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #8B1A1A;
+        }
+        
+        /* 展览样式 */
+        .exhibition-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px dashed #ddd;
+            display: flex;
+        }
+        
+        .exhibition-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .exhibition-img {
+            width: 150px;
+            height: 100px;
+            background-color: #8B1A1A;
+            margin-right: 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .exhibition-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #8B1A1A;
+        }
+        
+        .exhibition-date {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        /* 侧边栏样式 */
+        .sidebar-widget {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-widget:last-child {
+            margin-bottom: 0;
+        }
+        
+        .info-list {
+            list-style: none;
+        }
+        
+        .info-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-icon {
+            margin-right: 10px;
+            color: #8B1A1A;
+            font-size: 18px;
+        }
+        
+        /* 藏品展示 */
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .collection-item {
+            background: #f8f4e9;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .collection-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .collection-img {
+            height: 150px;
+            background-color: #8B1A1A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .collection-content {
+            padding: 15px;
+        }
+        
+        .collection-content h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #8B1A1A;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: linear-gradient(to right, #333, #555);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #f8d568;
+        }
+        
+        .footer-section p, .footer-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #666;
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .collection-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .banner-content h2 {
+                font-size: 36px;
+            }
+            
+            .banner-content p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <!-- 故宫logo占位 -->
+                    <div style="width:70px;height:70px;background:#f8d568;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#8B1A1A;font-weight:bold;">故宫</div>
+                    <div class="logo-text">
+                        <h1>故宫博物院</h1>
+                        <p>The Palace Museum</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="明朝.html">首页</a></li>
+                        
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 横幅区域 -->
+    <div class="banner">
+        <div class="banner-content">
+            <h2>紫禁城 · 六百年辉煌</h2>
+            <p>世界文化遗产 · 中国明清两代的皇家宫殿</p>
+            <a href="#visit" class="btn">立即预约参观</a>
+        </div>
+    </div>
+
+    <!-- 主要内容区 -->
+    <div class="container">
+        <div class="main-content">
+            <!-- 左侧主要内容 -->
+            <div class="left-content">
+                <!-- 故宫简介 -->
+                <section id="about">
+                    <h2>故宫简介</h2>
+                    <p>故宫，旧称紫禁城，位于北京中轴线的中心，是明清两代的皇家宫殿。故宫始建于明成祖永乐四年（1406年），永乐十八年（1420年）建成，是世界上现存规模最大、保存最为完整的木质结构古建筑群之一。</p>
+                    <p>故宫占地面积72万平方米，建筑面积约15万平方米，有大小宫殿七十多座，房屋九千余间。故宫四面环有高10米的城墙，城墙外有宽52米的护城河。紫禁城内的建筑分为外朝和内廷两部分。</p>
+                    
+                    <div class="intro-grid">
+                        <div class="intro-item">
+                            <div class="intro-icon">🏛️</div>
+                            <h3>外朝</h3>
+                            <p>以太和殿、中和殿、保和殿三大殿为中心，是皇帝举行朝会的地方，也称为"前朝"。</p>
+                        </div>
+                        <div class="intro-item">
+                            <div class="intro-icon">🏮</div>
+                            <h3>内廷</h3>
+                            <p>以乾清宫、交泰殿、坤宁宫后三宫为中心，是皇帝和后妃们居住、举行祭祀和宗教活动的地方。</p>
+                        </div>
+                        <div class="intro-item">
+                            <div class="intro-icon">🖼️</div>
+                            <h3>文物藏品</h3>
+                            <p>故宫博物院藏有大量珍贵文物，据统计总共达186万余件，涵盖几乎整个古代中国文明发展史。</p>
+                        </div>
+                        <div class="intro-item">
+                            <div class="intro-icon">🌍</div>
+                            <h3>世界遗产</h3>
+                            <p>1987年，故宫被联合国教科文组织列为"世界文化遗产"，是中国文化的象征之一。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 展览信息 -->
+                <section id="exhibitions">
+                    <h2>当前展览</h2>
+                    <div class="exhibition-item">
+                        <div class="exhibition-img"></div>
+                        <div class="exhibition-content">
+                            <h3>紫禁城建成六百年特展</h3>
+                            <div class="exhibition-date">展期：2023年9月10日 - 2023年12月20日</div>
+                            <p>为纪念紫禁城建成六百年，本次展览汇集了大量珍贵文物，展现紫禁城六百年的营建、变迁与保护传承。</p>
+                        </div>
+                    </div>
+                    <div class="exhibition-item">
+                        <div class="exhibition-img"></div>
+                        <div class="exhibition-content">
+                            <h3>清代宫廷服饰展</h3>
+                            <div class="exhibition-date">展期：2023年10月15日 - 2024年3月15日</div>
+                            <p>展出清代宫廷服饰及相关文物150余件，全面展示清代宫廷服饰制度、工艺特点及文化内涵。</p>
+                        </div>
+                    </div>
+                    <div class="exhibition-item">
+                        <div class="exhibition-img"></div>
+                        <div class="exhibition-content">
+                            <h3>故宫藏古代书画精品展</h3>
+                            <div class="exhibition-date">展期：2023年11月1日 - 2024年2月28日</div>
+                            <p>展出故宫博物院藏唐宋元明清各代书画精品80余件，包括多件一级文物和国宝级文物。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 馆藏精品 -->
+                <section id="collections">
+                    <h2>馆藏精品</h2>
+                    <p>故宫博物院收藏有大量珍贵文物，涵盖陶瓷、绘画、书法、青铜器、玉器、漆器、珐琅器、雕塑、铭刻、家具、古籍善本、文房四宝、钟表仪器、宫苑典章、宗教文物、军事文物、外国文物等各个方面。</p>
+                    
+                    <div class="collection-grid">
+                        <div class="collection-item">
+                           
+                            <div class="collection-content">
+                                <h3>清明上河图</h3>
+                                <p>北宋张择端所作，中国十大传世名画之一，生动记录了中国十二世纪城市生活的面貌。</p>
+                            </div>
+                        </div>
+                        <div class="collection-item">
+                           
+                            <div class="collection-content">
+                                <h3>金瓯永固杯</h3>
+                                <p>清代皇帝每年元旦举行开笔仪式时的专用酒杯，象征疆土永固，国家太平。</p>
+                            </div>
+                        </div>
+                        <div class="collection-item">
+                           
+                            <div class="collection-content">
+                                <h3>大禹治水图玉山</h3>
+                                <p>中国玉器史上最大的玉雕作品，重达5吨，描绘了大禹治水的传说故事。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 右侧边栏 -->
+            <div class="sidebar">
+                <!-- 参观指南 -->
+                <section id="visit">
+                    <h2>参观指南</h2>
+                    <div class="sidebar-widget">
+                        <h3>开放时间</h3>
+                        <ul class="info-list">
+                            <li><span class="info-icon">⏰</span> 旺季(4月1日-10月31日) 8:30-17:00</li>
+                            <li><span class="info-icon">⏰</span> 淡季(11月1日-3月31日) 8:30-16:30</li>
+                            <li><span class="info-icon">📅</span> 周一闭馆（法定节假日除外）</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h3>门票信息</h3>
+                        <ul class="info-list">
+                            <li><span class="info-icon">🎫</span> 旺季门票：60元/人</li>
+                            <li><span class="info-icon">🎫</span> 淡季门票：40元/人</li>
+                            <li><span class="info-icon">👨‍🎓</span> 学生票：20元/人</li>
+                            <li><span class="info-icon">👵</span> 老年人、残疾人免费</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h3>参观建议</h3>
+                        <ul class="info-list">
+                            <li><span class="info-icon">🚶</span> 建议参观时间：3-4小时</li>
+                            <li><span class="info-icon">🗺️</span> 推荐路线：午门→太和殿→中和殿→保和殿→乾清宫→交泰殿→坤宁宫→御花园</li>
+                            <li><span class="info-icon">📱</span> 提供语音导览服务</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 最新公告 -->
+                <section>
+                    <h2>最新公告</h2>
+                    <div class="sidebar-widget">
+                        <ul class="info-list">
+                            <li><span class="info-icon">📢</span> 故宫实行实名制预约参观，请提前在官网预约</li>
+                            <li><span class="info-icon">📢</span> 2023年11月1日起，故宫将试行分时段预约参观</li>
+                            <li><span class="info-icon">📢</span> 故宫北院区项目已正式启动，预计2025年对外开放</li>
+                            <li><span class="info-icon">📢</span> 故宫数字文物库上线，7万件文物高清影像免费浏览</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>地址：北京市东城区景山前街4号</p>
+                    <p>邮编：100009</p>
+                    <p>咨询电话：010-8500-7421</p>
+                    <p>邮箱：gugong@dpm.org.cn</p>
+                </div>
+                <div class="footer-section">
+                    <h3>关注我们</h3>
+                    <p>微信公众号：故宫博物院</p>
+                    <p>官方微博：@故宫博物院</p>
+                    <p>官方APP：故宫展览、每日故宫</p>
+                    <p>官方网站：www.dpm.org.cn</p>
+                </div>
+              
+            </div>
+            <div class="copyright">
+                <p>版权所有 &copy; 2023 故宫博物院 京ICP备05067311号-3</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

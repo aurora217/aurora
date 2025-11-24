@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>明朝虚拟博物馆 - 3D全景体验</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        }
+        
+        body {
+            background: #1a1200;
+            color: #e6d6a8;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        .container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            z-index: 10;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #d4af37;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b8a16b;
+        }
+        
+        .panorama-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            cursor: grab;
+        }
+        
+        .panorama {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            position: relative;
+        }
+        
+        .panorama-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+        
+        .controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+        }
+        
+        .control-btn {
+            background: rgba(212, 175, 55, 0.3);
+            border: 1px solid #d4af37;
+            color: #e6d6a8;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .control-btn:hover {
+            background: rgba(212, 175, 55, 0.5);
+        }
+        
+        .exhibits {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .exhibit {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.3);
+            border: 2px solid #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: all;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+        
+        .exhibit:hover {
+            transform: scale(1.2);
+            background: rgba(212, 175, 55, 0.6);
+        }
+        
+        .exhibit-icon {
+            font-size: 2rem;
+            color: #fff;
+        }
+        
+        .info-panel {
+            position: absolute;
+            top: 50%;
+            right: -400px;
+            width: 380px;
+            height: 80%;
+            background: rgba(26, 18, 0, 0.9);
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 20px;
+            transform: translateY(-50%);
+            transition: right 0.5s;
+            overflow-y: auto;
+            z-index: 20;
+        }
+        
+        .info-panel.active {
+            right: 20px;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #d4af37;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .artifact-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #d4af37;
+        }
+        
+        .artifact-title {
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #d4af37;
+            padding-bottom: 10px;
+        }
+        
+        .artifact-info {
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        .loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a1200;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(212, 175, 55, 0.3);
+            border-top: 5px solid #d4af37;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .navigation-hint {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #b8a16b;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>明朝虚拟博物馆</h1>
+            <div class="subtitle">沉浸式3D全景体验 · 探索大明王朝的文化瑰宝</div>
+			 <nav>
+                <ul>
+                    <li><a href="明朝.html"><i class="fas fa-home"></i> 首页</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <div class="panorama-container" id="panoramaContainer">
+            <div class="panorama" id="panorama">
+                <!-- 全景图将通过JavaScript动态加载 -->
+            </div>
+            
+            <div class="exhibits">
+                <!-- 展品标记将通过JavaScript动态添加 -->
+            </div>
+        </div>
+        
+        <div class="navigation-hint">
+            使用鼠标拖拽可以环顾展厅，点击展品标记查看详细信息
+        </div>
+        
+        <div class="controls">
+            <button class="control-btn" id="prevBtn">上一个展厅</button>
+            <button class="control-btn" id="nextBtn">下一个展厅</button>
+            <button class="control-btn" id="resetBtn">重置视角</button>
+        </div>
+        
+        <div class="info-panel" id="infoPanel">
+            <button class="close-btn" id="closeBtn">×</button>
+            <img class="artifact-image" id="artifactImage" src="" alt="文物图片">
+            <h2 class="artifact-title" id="artifactTitle">文物名称</h2>
+            <div class="artifact-info" id="artifactInfo">
+                文物详细信息将在这里显示。
+            </div>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <div>正在加载明朝虚拟博物馆...</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 模拟加载过程
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                initMuseum();
+            }, 2000);
+            
+            function initMuseum() {
+                const panoramaContainer = document.getElementById('panoramaContainer');
+                const panorama = document.getElementById('panorama');
+                const exhibitsContainer = document.querySelector('.exhibits');
+                const infoPanel = document.getElementById('infoPanel');
+                const closeBtn = document.getElementById('closeBtn');
+                const artifactImage = document.getElementById('artifactImage');
+                const artifactTitle = document.getElementById('artifactTitle');
+                const artifactInfo = document.getElementById('artifactInfo');
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                const resetBtn = document.getElementById('resetBtn');
+                
+                // 全景图数据
+                const rooms = [
+                    {
+                        name: "陶瓷馆",
+                        image: "100915000000xn1qj4EC0.jpg",
+                        exhibits: [
+                            {
+                                id: 1,
+                                x: 30,
+                                y: 40,
+                                title: "青花缠枝莲纹梅瓶",
+                                image: "qinghuachanzhifanlianwenmeiping_7560507.jpg",
+                                info: "明代青花瓷的代表作，器形优美，纹饰繁复。青花发色纯正，釉面莹润，是明代官窑瓷器中的精品。此梅瓶高约30厘米，口径5厘米，底径10厘米。"
+                            },
+                            {
+                                id: 2,
+                                x: 70,
+                                y: 60,
+                                title: "五彩鱼藻纹大罐",
+                                image: "OIP-C (10).webp",
+                                info: "明代嘉靖年间五彩瓷器，罐体饱满，纹饰生动。以红、绿、黄、紫等色彩描绘鱼藻图案，色彩鲜艳，对比强烈，体现了明代五彩瓷器的典型特征。"
+                            }
+                        ]
+                    },
+                    {
+                        name: "书画馆",
+                        image: "c9f0f895fb98ab9159f51fd0297e236d.jpg",
+                        exhibits: [
+                            {
+                                id: 3,
+                                x: 50,
+                                y: 30,
+                                title: "唐寅《秋风纨扇图》",
+                                image: "R-C (14).jpg",
+                                info: "明代著名画家唐寅（唐伯虎）的代表作之一。此画描绘了一位手持纨扇的女子在秋风中伫立，意境深远，笔法细腻，体现了唐寅高超的人物画技艺和独特的艺术风格。"
+                            },
+                            {
+                                id: 4,
+                                x: 20,
+                                y: 70,
+                                title: "文徵明《山水图》",
+                                image: "OIP-C (11).webp",
+                                info: "明代书画家文徵明的山水画作品。画面构图严谨，笔墨苍润，山石树木描绘精细，意境清远，体现了文徵明深厚的书法功底和文人画的艺术特色。"
+                            }
+                        ]
+                    },
+                    {
+                        name: "服饰馆",
+                        image: "b4c600f2d0532c7e36443176ffd624da1649041631.png",
+                        exhibits: [
+                            {
+                                id: 5,
+                                x: 40,
+                                y: 50,
+                                title: "明代龙袍",
+                                image: "R-C (15).jpg",
+                                info: "明代皇帝礼服，以明黄色绸缎为底，上绣九条五爪金龙及十二章纹样。龙袍制作工艺复杂，采用缂丝、刺绣等多种技法，体现了明代织造工艺的最高水平。"
+                            },
+                            {
+                                id: 6,
+                                x: 70,
+                                y: 30,
+                                title: "凤冠",
+                                image: "de58-hqackaa9901567.jpg",
+                                info: "明代皇后及贵族妇女在重大典礼时佩戴的礼冠。以金银丝编制为胎，点缀珍珠、宝石，前部饰有凤凰造型，工艺精湛，富丽堂皇，是明代宫廷首饰的杰出代表。"
+                            }
+                        ]
+                    }
+                ];
+                
+                let currentRoomIndex = 0;
+                let isDragging = false;
+                let startX, startY;
+                let rotationX = 0, rotationY = 0;
+                let currentRotationX = 0, currentRotationY = 0;
+                
+                // 加载当前展厅
+                function loadRoom(index) {
+                    const room = rooms[index];
+                    
+                    // 设置全景图
+                    panorama.innerHTML = '';
+                    const img = document.createElement('img');
+                    img.className = 'panorama-image';
+                    img.src = room.image;
+                    img.alt = room.name;
+                    panorama.appendChild(img);
+                    
+                    // 清空展品标记
+                    exhibitsContainer.innerHTML = '';
+                    
+                    // 添加展品标记
+                    room.exhibits.forEach(exhibit => {
+                        const exhibitElement = document.createElement('div');
+                        exhibitElement.className = 'exhibit';
+                        exhibitElement.style.left = `${exhibit.x}%`;
+                        exhibitElement.style.top = `${exhibit.y}%`;
+                        exhibitElement.innerHTML = '<div class="exhibit-icon">⛫</div>';
+                        
+                        exhibitElement.addEventListener('click', () => {
+                            showArtifactInfo(exhibit);
+                        });
+                        
+                        exhibitsContainer.appendChild(exhibitElement);
+                    });
+                    
+                    // 更新标题
+                    document.querySelector('h1').textContent = `明朝虚拟博物馆 - ${room.name}`;
+                    
+                    // 重置视角
+                    resetView();
+                }
+                
+                // 显示文物信息
+                function showArtifactInfo(artifact) {
+                    artifactImage.src = artifact.image;
+                    artifactTitle.textContent = artifact.title;
+                    artifactInfo.textContent = artifact.info;
+                    infoPanel.classList.add('active');
+                }
+                
+                // 关闭信息面板
+                closeBtn.addEventListener('click', () => {
+                    infoPanel.classList.remove('active');
+                });
+                
+                // 重置视角
+                function resetView() {
+                    rotationX = 0;
+                    rotationY = 0;
+                    currentRotationX = 0;
+                    currentRotationY = 0;
+                    updatePanoramaRotation();
+                }
+                
+                // 更新全景图旋转
+                function updatePanoramaRotation() {
+                    panorama.style.transform = `rotateX(${rotationY}deg) rotateY(${rotationX}deg)`;
+                }
+                
+                // 鼠标事件处理
+                panoramaContainer.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    panoramaContainer.style.cursor = 'grabbing';
+                });
+                
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    
+                    const deltaX = e.clientX - startX;
+                    const deltaY = e.clientY - startY;
+                    
+                    rotationX = currentRotationX + deltaX * 0.5;
+                    rotationY = currentRotationY + deltaY * 0.5;
+                    
+                    updatePanoramaRotation();
+                });
+                
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        currentRotationX = rotationX;
+                        currentRotationY = rotationY;
+                        panoramaContainer.style.cursor = 'grab';
+                    }
+                });
+                
+                // 切换展厅
+                prevBtn.addEventListener('click', () => {
+                    currentRoomIndex = (currentRoomIndex - 1 + rooms.length) % rooms.length;
+                    loadRoom(currentRoomIndex);
+                });
+                
+                nextBtn.addEventListener('click', () => {
+                    currentRoomIndex = (currentRoomIndex + 1) % rooms.length;
+                    loadRoom(currentRoomIndex);
+                });
+                
+                resetBtn.addEventListener('click', resetView);
+                
+                // 初始加载
+                loadRoom(currentRoomIndex);
+            }
+        });
+    </script>
+</body>
+</html>
